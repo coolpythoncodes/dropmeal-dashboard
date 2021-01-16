@@ -1,3 +1,9 @@
 .layout{
     display: flex;
+
+    .main{
+        flex: auto;
+        border: saddlebrown solid;
+        padding: 0 140px;
+    }
 }

@@ -1,0 +1,42 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 2rem;
+
+    &__search{
+       
+        input[type=text]{
+            width: 132px;
+            border: 1px solid #01161E;
+            border-radius: 32px;
+            outline: none;
+            color: #01161E;
+            padding: 12px 20px 12px 40px;
+            background: url("../assests/search.svg") no-repeat 10px 10px;
+            background-color: #fff;
+            -webkit-transition: width 0.4s ease-in-out;
+            transition: width 0.4s ease-in-out;
+
+            &:focus{
+                width: 200px;
+            }
+        }
+    }
+
+    &__profile{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.8rem;
+
+        p{
+            margin-left: 9px;
+        }
+
+        img{
+            width: 9px;
+            margin-left: 11px;
+        }
+    }
+}
