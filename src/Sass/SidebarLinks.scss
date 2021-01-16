@@ -1,0 +1,35 @@
+li{
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+    // justify-content: space-evenly;
+    width: 200px;
+    height: 50px;
+    background: #01161E;
+
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+
+    & > a{
+        display: flex;
+        // align-items: center;
+        // justify-content: space-between;
+        // background: #01161E;
+        color: #fff;
+        // height: 50px;
+        // width: 260px;
+        font-size: 14px;
+        // border-radius: 6px;
+        // // padding: 10px 20px;
+        // margin-bottom: 1rem;
+        // margin-left: 1rem;
+    
+        img{
+            width: 16px;
+            object-fit: contain;
+            margin-right: 50px;
+            margin-left: 24px;
+        }
+    }
+}
+

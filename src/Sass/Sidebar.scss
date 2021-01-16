@@ -1,0 +1,21 @@
+.sidebar{
+    margin-left: 100px;
+
+    &__logo{
+        display: flex;
+        align-items: center;
+        margin-top: 2rem;
+        margin-bottom: 50px;
+        margin-left: 5px;
+
+        img{
+            object-fit: contain;
+            width: 31px;
+        }
+
+        h1{
+            color: #707070;
+            font-size: 1rem;
+        }
+    }
+}

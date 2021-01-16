@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32.5" height="32.5" viewBox="0 0 32.5 32.5">
+  <g id="__TEMP__SVG__" transform="translate(-1.75 -1.75)">
+    <path id="Path_7" data-name="Path 7" d="M33.75,33.75H31.5V28.125A5.632,5.632,0,0,0,25.875,22.5V20.25a7.884,7.884,0,0,1,7.875,7.875Z" fill="#bebebe" stroke="#bebebe" stroke-width="1"/>
+    <path id="Path_8" data-name="Path 8" d="M24.75,33.75H22.5V28.125A5.632,5.632,0,0,0,16.875,22.5h-6.75A5.632,5.632,0,0,0,4.5,28.125V33.75H2.25V28.125a7.884,7.884,0,0,1,7.875-7.875h6.75a7.884,7.884,0,0,1,7.875,7.875Z" fill="#bebebe" stroke="#bebebe" stroke-width="1"/>
+    <path id="Path_9" data-name="Path 9" d="M22.5,2.25V4.5a5.625,5.625,0,0,1,0,11.25V18a7.875,7.875,0,1,0,0-15.75Z" fill="#bebebe" stroke="#bebebe" stroke-width="1"/>
+    <path id="Path_10" data-name="Path 10" d="M12.515,4.219A4.921,4.921,0,1,1,7.594,9.14a4.921,4.921,0,0,1,4.921-4.921m0-1.969A6.89,6.89,0,1,0,19.4,9.14,6.89,6.89,0,0,0,12.515,2.25Z" transform="translate(0.985 0.985)" fill="#bebebe" stroke="#bebebe" stroke-width="1"/>
+  </g>
+</svg>

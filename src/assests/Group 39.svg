@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="260" height="176" viewBox="0 0 260 176">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_14" data-name="Rectangle 14" width="260" height="176" rx="20" transform="translate(968 250)" fill="#ffecd5"/>
+    </clipPath>
+  </defs>
+  <g id="Group_39" data-name="Group 39" transform="translate(-968 -250)">
+    <rect id="Rectangle_10" data-name="Rectangle 10" width="260" height="176" rx="20" transform="translate(968 250)" fill="#dcc8af"/>
+    <g id="Mask_Group_3" data-name="Mask Group 3" clip-path="url(#clip-path)">
+      <path id="Path_23" data-name="Path 23" d="M137.68,1.633h19a136,136,0,0,1,136,136v19a136,136,0,0,1-136,136h-19a136,136,0,0,1-136-136v-19A136,136,0,0,1,137.68,1.633Z" transform="matrix(0.951, -0.309, 0.309, 0.951, 1043.057, 51.89)" fill="#fb9097" opacity="0.89" style="mix-blend-mode: screen;isolation: isolate"/>
+      <path id="Path_26" data-name="Path 26" d="M137.68,1.633h19a136,136,0,0,1,136,136v19a136,136,0,0,1-136,136h-19a136,136,0,0,1-136-136v-19A136,136,0,0,1,137.68,1.633Z" transform="matrix(0.951, -0.309, 0.309, 0.951, 1043.057, 36.89)" fill="#fb9097" opacity="0.89" style="mix-blend-mode: screen;isolation: isolate"/>
+    </g>
+  </g>
+</svg>
