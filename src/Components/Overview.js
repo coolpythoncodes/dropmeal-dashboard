@@ -10,6 +10,7 @@ import {
       YAxis
     }  from 'react-vis';
 import LatestDelivery from './LatestDelivery';
+import NewUsers from './NewUsers';
 
 const Overview = () => {
     const data = [
@@ -23,7 +24,7 @@ const Overview = () => {
     return (
         <div className='overview'>
             <h1>Overview</h1>
-            <div className="overview__top">
+            <section className="overview__top">
                 <div className="overview__topSales">
                     <small>Total Sales</small>
                     <h1>N 500,000.000</h1>
@@ -40,9 +41,9 @@ const Overview = () => {
                     <small>Total Users</small>
                     <h1>2000</h1>
                 </div>
-            </div>
+            </section>
 
-            <div className="overview__middle">
+            <section className="overview__middle">
                 <div className="overview__middleChart">
                     <div className="chart__header">
                         <h1>Sales Chart</h1>
@@ -80,25 +81,45 @@ const Overview = () => {
                         time='1 min'
                     />
                     <LatestDelivery
-                        name='Holland'
+                        name='Eucharia'
                         reference='983298322'
                         amount='5,000'
                         time='1 min'
                     />
                     <LatestDelivery
-                        name='Holland'
+                        name='Favor'
                         reference='983298322'
                         amount='5,000'
                         time='1 min'
                     />
                     <LatestDelivery
-                        name='Holland'
+                        name='Fredrick'
                         reference='983298322'
                         amount='5,000'
                         time='1 min'
                     />
                 </div>
-            </div>
+            </section>
+
+            <section className="newest__user">
+                <h1>Newest Users</h1>
+                <NewUsers
+                    name='Holland Ray'
+                    time='2hrs'
+                />
+                <NewUsers
+                    name='Holland Ray'
+                    time='2hrs'
+                />
+                <NewUsers
+                    name='Holland Ray'
+                    time='2hrs'
+                />
+                <NewUsers
+                    name='Holland Ray'
+                    time='2hrs'
+                />
+            </section>
         </div>
     );
 }

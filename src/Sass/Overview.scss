@@ -94,7 +94,8 @@
             padding-left: 40px;
             padding-top: 36px;
             padding-right: 40px;
-            border: saddlebrown solid;
+            border-radius: 20px;
+            background: #fff;
             height: 400px;
 
             .chart__header{
@@ -126,17 +127,33 @@
         }
 
         &Delivery{
-            border: solid green;
+            background: #fff;
+            border-radius: 20px;
             height: 400px;
-            padding: 36px 1rem 0 1rem;
+            padding: 36px 25px 0 1rem;
 
             .latest__heading{
-                margin-bottom: 1rem;
+                margin-bottom: 28px;
             }
 
             h1{
                 color: #01161E;
             }
+        }
+    }
+    .newest__user{
+        width: 398px;
+        height: 400px;
+        padding-left: 32px;
+        padding-top: 36px;
+        padding-right: 34px;
+        background: #fff;
+        margin-top: 60px;
+        border-radius: 20px;
+        margin-bottom: 73px;
+
+        h1{
+            margin-bottom: 28px;
         }
     }
 }

@@ -14,7 +14,7 @@ const LatestDelivery = ({ name, reference, time, amount}) => {
                 </div>
             </div>
             <div className="latest__deliveryRight">
-                <h1>N {amount}</h1>
+                <h1 className='amount'>N {amount}</h1>
                 <small>{time}</small>
             </div>
         </div>

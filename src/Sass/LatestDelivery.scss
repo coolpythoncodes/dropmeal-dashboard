@@ -1,9 +1,14 @@
 .latest__delivery{
     display: flex;
-    border: solid red;
+    margin-bottom: 21px;
+
+    h1{
+        font-size: 12px;
+    }
 
     small{
         color: #BEBEBE;
+        font-size: 12px;
     }
 
     &Left{
@@ -13,5 +18,9 @@
 
     &Right{
         margin-left: auto;
+
+        .amount{
+            font-weight: 900;
+        }
     }
 }
