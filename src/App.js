@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from './Components/Layout';
-import { Counter } from './features/counter/Counter';
+// import { Counter } from './features/counter/Counter';
 
 import {
   BrowserRouter as Router,

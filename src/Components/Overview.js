@@ -1,7 +1,14 @@
 import '../Sass/Overview.scss';
 import ArrowDownIcon from '../assests/arrow-down-fill.svg';
-import {timeFormatDefaultLocale} from 'd3-time-format';
-import { HorizontalGridLines, LineSeries, VerticalGridLines, XAxis, XYPlot, YAxis } from 'react-vis';
+// import {timeFormatDefaultLocale} from 'd3-time-format';
+import { 
+    // HorizontalGridLines, 
+    LineSeries,
+    //  VerticalGridLines,
+      XAxis, 
+      XYPlot, 
+      YAxis
+    }  from 'react-vis';
 import LatestDelivery from './LatestDelivery';
 
 const Overview = () => {
