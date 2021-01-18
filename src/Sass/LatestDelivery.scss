@@ -1,0 +1,17 @@
+.latest__delivery{
+    display: flex;
+    border: solid red;
+
+    small{
+        color: #BEBEBE;
+    }
+
+    &Left{
+        display: flex;
+
+    }
+
+    &Right{
+        margin-left: auto;
+    }
+}

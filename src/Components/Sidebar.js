@@ -21,34 +21,42 @@ const Sidebar = () => {
                 <SidebarLinks 
                     title='Overview'
                     image={OverviewIcon}
+                    href='/'
                 />
                 <SidebarLinks 
                     title='Category'
                     image={CategoryIcon}
+                    href='/category'
                 />
                 <SidebarLinks 
                     title='Meals'
                     image={MealsIcon}
+                    href='/meals'
                 />
                 <SidebarLinks 
                     title='Extras'
                     image={ExtrasIcon}
+                    href='/extras'
                 />
                 <SidebarLinks 
                     title='User'
                     image={UserIcon}
+                    href='/user'
                 />
                 <SidebarLinks 
                     title='Orders'
                     image={OrdersIcon}
+                    href='/orders'
                 />
                 <SidebarLinks 
                     title='Wallet'
                     image={WalletIcon}
+                    href='/wallet'
                 />
                 <SidebarLinks 
                     title='Dispatch'
                     image={DispatchIcon}
+                    href='/dispatch'
                 />
             </ul>
         </div>

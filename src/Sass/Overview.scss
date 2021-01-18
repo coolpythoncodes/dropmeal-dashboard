@@ -1,0 +1,142 @@
+.overview{
+
+    h1{
+        color: #01161E;
+        font-size: 1rem;
+    }
+
+    &__top{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        column-gap: 1rem;
+        margin-top: 35px;
+
+        &Sales{
+            background: url("../assests/totalSales.svg") no-repeat 0px 0px /cover;
+            height: 90px;
+
+            small{
+                color: #FCFBFB;
+                display: inline-block;
+                padding-top: 2rem;
+                margin-left: 18px;
+            }
+
+            h1{
+                color: #FCFBFB;
+                margin-left: 18px;
+            }
+        }
+
+        &Income{
+            background: url("../assests/Group\ 39.svg") no-repeat 0px 0px /cover;
+            height: 90px;
+
+            small{
+                color: #01161E;
+                display: inline-block;
+                padding-top: 2rem;
+                margin-left: 18px;
+            }
+
+            h1{
+                color: #01161E;
+                margin-left: 18px;
+            }
+        }
+
+        &Users{
+            background: url("../assests/totalUsers.svg") no-repeat 0px 0px /cover;
+            height: 90px;
+
+            small{
+                color: #01161E;
+                display: inline-block;
+                padding-top: 2rem;
+                margin-left: 18px;
+            }
+
+            h1{
+                color: #01161E;
+                margin-left: 18px;
+            }
+        }
+
+        &Users2{
+            background: url("../assests/Group\ 41.svg") no-repeat 0px 0px /cover;
+            height: 90px;
+
+            small{
+                color: #01161E;
+                display: inline-block;
+                padding-top: 2rem;
+                margin-left: 18px;
+            }
+
+            h1{
+                color: #01161E;
+                margin-left: 18px;
+            }
+        }
+
+        & > div{
+            border-radius: 10px;
+        }
+    }
+
+    &__middle{
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        column-gap: 1rem;
+        margin-top: 2rem;
+
+        &Chart{
+            padding-left: 40px;
+            padding-top: 36px;
+            padding-right: 40px;
+            border: saddlebrown solid;
+            height: 400px;
+
+            .chart__header{
+                display: flex;
+
+                h1{
+                    color: #01161E;
+                    font-size: 1rem;
+                }
+
+                & > div{
+                    display: flex;
+                    align-items: center;
+                    margin-left: auto;
+
+                    img{
+                        width: 9px;
+                        object-fit: contain;
+                        margin-left: 10px;
+                        color: #BEBEBE;
+                    }
+
+                    small{
+                        color: #BEBEBE;
+                    }
+
+                }
+            }
+        }
+
+        &Delivery{
+            border: solid green;
+            height: 400px;
+            padding: 36px 1rem 0 1rem;
+
+            .latest__heading{
+                margin-bottom: 1rem;
+            }
+
+            h1{
+                color: #01161E;
+            }
+        }
+    }
+}

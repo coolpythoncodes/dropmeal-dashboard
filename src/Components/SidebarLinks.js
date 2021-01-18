@@ -1,14 +1,14 @@
-import React from 'react';
+import { Link } from "react-router-dom";
 import '../Sass/SidebarLinks.scss'
 
 
-const SidebarLinks = ({ title , image}) => {
+const SidebarLinks = ({ title , image, href}) => {
     return (
         <li>
-             <a href='/'>
+             <Link to={href}>
                 <img src={image} alt=""/>
                 <p>{ title }</p>
-            </a>
+            </Link>
         </li>       
     );
 }
