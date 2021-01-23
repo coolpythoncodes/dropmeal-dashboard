@@ -1,11 +1,126 @@
-.category{
+.category {
+	h1 {
+        color: #01161e;
+        margin-bottom: 35px;
+		font-size: 1rem;
+	}
 
-    h1{
-        color: #01161E;
-        font-size: 1rem;
-    }
+	img {
+		width: 89px;
+	}
 
-    img{
-        width: 89px;
-    }
+	&__main {
+		display: flex;
+
+		&Left {
+            flex: 0.5;
+
+            .edit__box, .remove__box{
+                justify-self: center;
+            }
+
+            .table__head {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                height: fit-content;
+                margin: 0;
+
+                h2{
+                    color: #BEBEBE;
+                    font-size: 1rem;
+                }
+            }
+
+            .table__item{
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                align-items: center;
+                margin: 32px 0;
+
+                p{
+                    color: #01161E;
+                    font-size: 1rem;
+                }
+
+                .food__image{
+                    width: 65px;
+                }
+
+                .edit, .delete{
+                    width: 20px;
+                }
+            }
+		}
+
+		&Right {
+			flex: 0.5;
+
+			.right__content {
+				background: #fff;
+				box-shadow: 0px 10px 49px #afafaf29;
+				border-radius: 20px;
+                height: fit-content;
+                padding-bottom: 72px;
+				padding-top: 29px;
+				padding-left: 40px;
+				width: 80%;
+				margin-left: auto;
+			}
+
+			h1 {
+				color: #bebebe;
+				font-size: 1.5rem;
+			}
+
+			form {
+				width: 280px;
+				margin-top: 40px;
+				// border: green solid;
+
+				label {
+					color: #01161e;
+					font-size: 0.8rem;
+                }
+
+                p{
+                    font-size: 0.8rem;
+                }
+
+				.category__image {
+					border: 2px dashed #bebebe;
+                    border-radius: 6px;
+                    // padding: 10px;
+                    margin-top: 10px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 120px;
+                    height: 120px;
+				}
+
+				input {
+					width: 100%;
+					border: 1px solid #bebebe;
+					color: #01161e;
+					border-radius: 6px;
+					outline: 0;
+					padding: 10px;
+					font-size: 1rem;
+					margin-top: 1rem;
+					margin-bottom: 2rem;
+				}
+
+				button.upload {
+					width: 100%;
+					border-radius: 6px;
+					background: #107fee;
+					border: 0;
+					outline: 0;
+					padding: 10px 0;
+                    color: #fff;
+                    margin-top: 40px;
+				}
+			}
+		}
+	}
 }
