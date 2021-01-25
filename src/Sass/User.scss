@@ -1,0 +1,53 @@
+.user {
+	h1 {
+		color: #01161e;
+		margin-bottom: 35px;
+		font-size: 1rem;
+	}
+
+	.edit__box,
+	.remove__box,
+	.order__box,
+    .address_box,
+    .phone__box {
+		justify-self: center;
+	}
+
+	&__tableHead {
+		display: grid;
+		grid-template-columns: repeat(7, 1fr);
+		margin: 0;
+		border-bottom: 1px solid #efefef;
+		padding-bottom: 1rem;
+
+		h2 {
+			color: #bebebe;
+			font-size: 1rem;
+		}
+	}
+
+	&__tableItem {
+		display: grid;
+		grid-template-columns: repeat(7, 1fr);
+		align-items: center;
+        margin: 32px 0;
+        
+        div:first-of-type{
+            margin-left: 1rem;
+        }
+
+		p {
+			color: #01161e;
+			font-size: 0.8rem;
+		}
+
+		.food__image {
+			width: 65px;
+		}
+
+		.edit,
+		.delete {
+			width: 20px;
+		}
+	}
+}
