@@ -1,0 +1,35 @@
+.wallet{
+
+    h1 {
+        color: #01161e;
+        margin-bottom: 35px;
+		font-size: 1rem;
+    }
+    
+    &__tableHead {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        
+        border-bottom: 1px solid #efefef;
+        padding-bottom: 1rem;
+
+        h2 {
+            color: #bebebe;
+            font-size: 1rem;
+        }
+    }
+
+    &__tableItem {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        
+        align-items: center;
+        margin: 32px 0;
+
+        p {
+            color: #01161e;
+            font-size: 0.9rem;
+        }
+
+    }
+}
