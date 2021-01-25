@@ -5,7 +5,7 @@ const Wallet = () => {
         <div className='wallet'>
             <h1>Wallet</h1>
             <div className="wallet__tableHead">
-                <div>
+                <div className='date'>
                     <h2>Date</h2>
                 </div>
                 <div>
@@ -19,7 +19,7 @@ const Wallet = () => {
                 </div>
             </div>
             <div className="wallet__tableItem">
-                <div>
+                <div className='date'>
                     <p>4 hrs ago</p>
                 </div>
                 <div>

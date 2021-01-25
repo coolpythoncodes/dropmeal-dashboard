@@ -1,4 +1,4 @@
-.wallet{
+.dispatch{
 
     h1 {
         color: #01161e;
@@ -9,7 +9,7 @@
     .date{
         margin-left: 2rem;
     }
-    
+
     &__tableHead {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
