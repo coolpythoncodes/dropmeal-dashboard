@@ -1,49 +1,49 @@
-.header{
-    display: flex;
-    justify-content: space-between;
-    width: 75%;
-    padding-top: 2rem;
-    position: fixed;
-    top: 0;
-    right: 0;
- background: #FCFBFB;
-    
+.header {
+	display: flex;
+	justify-content: space-between;
+	width: 75%;
+	padding-top: 2rem;
+	position: fixed;
+	top: 0;
+	right: 0;
+    background: #fcfbfb;
+    z-index: 9999;
+    padding-bottom: 1rem;
 
-    &__search{
-       
-        input[type=text]{
-            width: 132px;
-            border: 1px solid #01161E;
-            border-radius: 32px;
-            outline: none;
-            color: #01161E;
-            padding: 12px 20px 12px 40px;
-            background: url("../assests/search.svg") no-repeat 10px 10px;
-            background-color: #fff;
-            -webkit-transition: width 0.4s ease-in-out;
-            transition: width 0.4s ease-in-out;
+	&__search {
+		input[type="text"] {
+			width: 132px;
+			border: 1px solid #01161e;
+			border-radius: 32px;
+			outline: none;
+			color: #01161e;
+			padding: 12px 20px 12px 40px;
+			background: url("../assests/search.svg") no-repeat 10px 10px;
+			background-color: #fff;
+			-webkit-transition: width 0.4s ease-in-out;
+			transition: width 0.4s ease-in-out;
 
-            &:focus{
-                width: 200px;
-            }
-        }
-    }
+			&:focus {
+				width: 200px;
+			}
+		}
+	}
 
-    &__profile{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: absolute;
-        right: 40px;
-        font-size: 0.8rem;
+	&__profile {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: absolute;
+		right: 40px;
+		font-size: 0.8rem;
 
-        p{
-            margin-left: 9px;
-        }
+		p {
+			margin-left: 9px;
+		}
 
-        img{
-            width: 9px;
-            margin-left: 11px;
-        }
-    }
+		img {
+			width: 9px;
+			margin-left: 11px;
+		}
+	}
 }
