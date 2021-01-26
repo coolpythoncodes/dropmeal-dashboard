@@ -1,8 +1,14 @@
 .layout{
     display: flex;
+    height: 100vh;
+    position: fixed;
+    width: 100%;
 
     .main{
         flex: auto;
         padding: 0 50px;
+        padding-top: 4rem;
+        overflow-y: scroll;
+        width: 80%;
     }
 }

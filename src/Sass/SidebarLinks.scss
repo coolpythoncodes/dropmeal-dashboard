@@ -3,19 +3,20 @@ li{
     align-items: center;
     border-radius: 6px;
     // justify-content: space-evenly;
-    width: 200px;
-    height: 50px;
-    background: #01161E;
+
 
     margin-left: 1rem;
     margin-bottom: 1rem;
 
     & > a{
         display: flex;
-        // align-items: center;
+        align-items: center;
         // justify-content: space-between;
         // background: #01161E;
-        color: #fff;
+        color: #bebebe;
+        width: 200px;
+        height: 50px;
+        background: #fff;
         // height: 50px;
         // width: 260px;
         font-size: 14px;
@@ -30,6 +31,10 @@ li{
             margin-right: 50px;
             margin-left: 24px;
         }
+    }
+    .is-active{
+        background: #01161E;
+        color: #fff;
     }
 }
 
