@@ -10,6 +10,11 @@
         margin-left: 2rem;
     }
     
+    .status{
+        display: flex;
+        align-items: center;
+    }
+
     &__tableHead {
         display: grid;
         grid-template-columns: repeat(7, 1fr);

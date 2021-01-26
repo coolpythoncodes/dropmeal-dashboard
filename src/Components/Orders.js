@@ -1,4 +1,5 @@
 import '../Sass/Orders.scss'
+import TrackButton from './TrackButton'
 
 const Orders = () => {
     return (
@@ -47,8 +48,9 @@ const Orders = () => {
                 <div>
                     <p>Wallet</p>
                 </div>
-                <div>
+                <div className='status'>
                     <p style={{color:'#DA2C38'}}>Processing</p>
+                    <TrackButton color='#F18701'/>
                 </div>
             </div>
 
@@ -71,8 +73,9 @@ const Orders = () => {
                 <div>
                     <p>Paystack</p>
                 </div>
-                <div>
+                <div className='status' >
                     <p style={{color:'#40AB03'}}>Delivered</p>
+                    <TrackButton color='#E6B67A'/>
                 </div>
             </div>
         </div>

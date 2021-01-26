@@ -1,4 +1,5 @@
 import '../Sass/Dispatch.scss'
+import TrackButton from './TrackButton';
 
 const Dispatch = () => {
     return (
@@ -28,8 +29,9 @@ const Dispatch = () => {
                 <div>
                     <p>delino.ndu@gmail.co</p>
                 </div>
-                <div>
-                    <p>Active</p>
+                <div className='status' >
+                    <p style={{color:'#007CAB'}}>Active</p>
+                    <TrackButton color='#F18701'/>
                 </div>
             </div>
 
@@ -43,8 +45,9 @@ const Dispatch = () => {
                 <div>
                     <p>belloray@gmail.com</p>
                 </div>
-                <div>
-                    <p>Inctive</p>
+                <div className='status' >
+                    <p>Inactive</p>
+                    <TrackButton color='#E6B67A'/>
                 </div>
             </div>
         </div>
