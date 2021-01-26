@@ -21,7 +21,7 @@ const Sidebar = () => {
                 <SidebarLinks 
                     title='Overview'
                     image={OverviewIcon}
-                    href='/'
+                    href='/overview'
                 />
                 <SidebarLinks 
                     title='Category'
