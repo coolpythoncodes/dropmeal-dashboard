@@ -1,11 +1,12 @@
 import '../Sass/Orders.scss'
+// import OrdersPopup from './OrdersPopup';
 import TrackButton from './TrackButton'
 
 const Orders = () => {
     return (
         <div className='orders'>
+            {/* <OrdersPopup /> */}
             <h1>Orders</h1>
-
             <div className="orders__tableHead">
                 <div className='date'>
                     <h2>Date</h2>
