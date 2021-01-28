@@ -11,6 +11,7 @@ import {
     }  from 'react-vis';
 import LatestDelivery from './LatestDelivery';
 import NewUsers from './NewUsers';
+import Layout from './Layout';
 
 const Overview = () => {
     const data = [
@@ -22,6 +23,7 @@ const Overview = () => {
         {x: 5, y: 30}
       ];
     return (
+        <Layout>
         <div className='overview'>
             <h1>Overview</h1>
             <section className="overview__top">
@@ -121,6 +123,7 @@ const Overview = () => {
                 />
             </section>
         </div>
+        </Layout>
     );
 }
 

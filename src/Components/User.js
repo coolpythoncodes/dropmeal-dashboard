@@ -2,9 +2,11 @@ import { Avatar } from '@material-ui/core'
 import '../Sass/User.scss'
 import EditIcon from '../assests/edit.svg';
 import DeleteIcon from '../assests/delete.svg';
+import Layout from './Layout';
 
 const User = () => {
     return (
+    <Layout>
         <div className='user'>
             <h1>User</h1>
             <div className="user__tableHead">
@@ -53,6 +55,7 @@ const User = () => {
                 </div>
             </div>
         </div>
+    </Layout>
     );
 }
 

@@ -1,11 +1,9 @@
-import React from 'react';
-import Layout from './Components/Layout';
+import React, {Component} from 'react';
 // import { Counter } from './features/counter/Counter';
 
 import {
   BrowserRouter as Router,
   Switch,
-  Route
 } from "react-router-dom";
 import Overview from './Components/Overview';
 import Meals from './Components/Meals';
@@ -15,58 +13,71 @@ import User from './Components/User';
 import Orders from './Components/Orders';
 import Wallet from './Components/Wallet';
 import Dispatch from './Components/Dispatch';
+import Login from './Components/Login';
+import PublicRoute from './route/publicRoute';
+import firebase from "./Components/firebase"
+import { connect } from 'react-redux';
+import PrivateRoute from './route/privateRoute';
 // import Login from './Components/Login';
 
 
-const App = () => {
+class App extends Component{
+  componentDidMount(){
+    
+    firebase.auth.onAuthStateChanged(async(user)=>{
+        try{
+            await firebase.getUserDetails(user.uid)
+            .then(userData=>{
+                this.props.dispatch({type:'GET_PHOTO', payload:{photoURL:user.photoURL}})
+                
+                if(userData.role === 3)
+                this.props.dispatch({type:'RETRIVE_USER', payload:{user,userData}})
+
+
+                this.props.dispatch({type:'SET_STATE', payload:{initializing:false}})
+                firebase.getCategories().onSnapshot(data=>{
+                  const categories = []
+                  data.forEach(doc=>categories.push({...doc.data(), id:doc.id}))
+                  this.props.dispatch({type:'GET_CATEGORIES', payload:{categories}})
+              })
+                
+            })
+        }
+        catch(e){
+          this.props.dispatch({type:'RETRIVE_USER', payload:{user:null, userData:null}})
+          this.props.dispatch({type:'SET_STATE', payload:{initializing:false}})
+        }
+        // if(user){
+
+
+        //     dispatch({type:'RETRIVE_USER', payload:{user}})
+        // }
+        // else{
+        //     dispatch({type:'RETRIVE_USER', payload:{user:null, userData:null}})
+        // }
+    })
+}
+render(){
   return (
-    // <Login />
+    
     <Router>
       <Switch>
-        <Route exact path='/overview'>
-          <Layout>
-            <Overview />
-          </Layout>
-        </Route>
-        <Route path='/meals'>
-          <Layout>
-              <Meals/>
-          </Layout>
-        </Route>
-        <Route path='/category'>
-          <Layout>
-              <Category/>
-          </Layout>
-        </Route>
-        <Route path='/extras'>
-          <Layout>
-              <Extras/>
-          </Layout>
-        </Route>
-        <Route path='/user'>
-          <Layout>
-              <User/>
-          </Layout>
-        </Route>
-        <Route path='/orders'>
-          <Layout>
-              <Orders />
-          </Layout>
-        </Route>
-        <Route path='/wallet'>
-          <Layout>
-              <Wallet />
-          </Layout>
-        </Route>
-        <Route path='/dispatch'>
-          <Layout>
-              <Dispatch />
-          </Layout>
-        </Route>
+
+        <PrivateRoute exact path='/overview' component={Overview}/>
+        <PrivateRoute exact path='/meals' component={Meals}/>
+        <PrivateRoute exact path='/category' component={Category}/>
+        <PrivateRoute exact path='/extras' component={Extras}/>
+        <PrivateRoute exact path='/user' component={User}/>
+        <PrivateRoute exact path='/orders' component={Orders}/>
+        <PrivateRoute exact path='/wallet' component={Wallet}/>
+        <PrivateRoute exact path='/dispatch' component={Dispatch}/>
+
+        <PublicRoute exact component={Login} path='/' />
       </Switch>
     </Router>
     
   )
 }
+}
 
-export default App;
+export default connect()(App);

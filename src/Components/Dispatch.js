@@ -1,8 +1,10 @@
 import '../Sass/Dispatch.scss'
 import TrackButton from './TrackButton';
+import Layout from './Layout';
 
 const Dispatch = () => {
     return (
+    <Layout>
         <div className='dispatch'>
             <h1>Dispatch</h1>
             <div className="dispatch__tableHead">
@@ -51,6 +53,7 @@ const Dispatch = () => {
                 </div>
             </div>
         </div>
+    </Layout>
     );
 }
 

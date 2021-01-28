@@ -3,10 +3,12 @@ import AddIcon from '../assests/add.svg';
 import FishIcon from '../assests/fish.svg';
 import EditIcon from '../assests/edit.svg';
 import DeleteIcon from '../assests/delete.svg';
+import Layout from './Layout';
 // import ExtrasPopup from './ExtrasPopup';
 
 const Extras = () => {
     return (
+    <Layout>
         <div className='extras'>
             {/* <ExtrasPopup /> */}
             <div className="extras__top">
@@ -53,6 +55,7 @@ const Extras = () => {
                 </div>
             </div>
         </div>
+    </Layout>
     );
 }
 

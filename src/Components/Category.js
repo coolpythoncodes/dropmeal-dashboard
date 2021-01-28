@@ -1,22 +1,35 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import ImageUploading from 'react-images-uploading';
 import '../Sass/Category.scss';
 
-import FishIcon from '../assests/fish.svg';
 import EditIcon from '../assests/edit.svg';
 import DeleteIcon from '../assests/delete.svg';
 
 import ImageUpload from '../assests/imageUpload.svg';
+import Layout from './Layout';
+import firebase from "./firebase"
+import { connect } from 'react-redux';
 
-const Category = () => {
+const Category = ({dispatch, categories}) => {
     const [images, setImages] = useState([]);
+    const [image, setImage] = useState([]);
     const onChange = (imageList, addUpdateIndex) => {
-        // data for submit
-        console.log(imageList, addUpdateIndex);
-        setImages(imageList);
+        setImage(imageList);
+        setImages(imageList[0].file);
     };
+    const [name, setName] = useState('')
+    const onSubmit = (e)=>{
+        e.preventDefault()
+        firebase.addCategory(name, images)
+        .then(()=>{
+            setName('')
+            setImages([])
+            setImage([])
+        })
+    }
 
     return (
+    <Layout>
         <div className='category'>
             <h1>Category</h1>
             <section className='category__main'>
@@ -34,110 +47,27 @@ const Category = () => {
                         </div>
                     </div>
                     
-                    <div className="table__item">
-                        <div>
-                            <img className='food__image'  src={FishIcon} alt="" />
-                        </div>
-                        <div>
-                            <p>Ice-cream</p>
-                        </div>
-                        <div className='edit__box'>
-                            <img className='edit' src={EditIcon} alt=""/>
-                        </div>
-                        <div className='remove__box'>
-                            <img className='delete' src={DeleteIcon} alt=""/>
-                        </div>
-                    </div>
-
-                    <div className="table__item">
-                        <div>
-                            <img className='food__image'  src={FishIcon} alt="" />
-                        </div>
-                        <div>
-                            <p>Ice-cream</p>
-                        </div>
-                        <div className='edit__box'>
-                            <img className='edit' src={EditIcon} alt=""/>
-                        </div>
-                        <div className='remove__box'>
-                            <img className='delete' src={DeleteIcon} alt=""/>
-                        </div>
-                    </div>
-
-                    <div className="table__item">
-                        <div>
-                            <img className='food__image'  src={FishIcon} alt="" />
-                        </div>
-                        <div>
-                            <p>Ice-cream</p>
-                        </div>
-                        <div className='edit__box'>
-                            <img className='edit' src={EditIcon} alt=""/>
-                        </div>
-                        <div className='remove__box'>
-                            <img className='delete' src={DeleteIcon} alt=""/>
-                        </div>
-                    </div>
-
-                    <div className="table__item">
-                        <div>
-                            <img className='food__image'  src={FishIcon} alt="" />
-                        </div>
-                        <div>
-                            <p>Ice-cream</p>
-                        </div>
-                        <div className='edit__box'>
-                            <img className='edit' src={EditIcon} alt=""/>
-                        </div>
-                        <div className='remove__box'>
-                            <img className='delete' src={DeleteIcon} alt=""/>
-                        </div>
-                    </div>
-
-                    <div className="table__item">
-                        <div>
-                            <img className='food__image'  src={FishIcon} alt="" />
-                        </div>
-                        <div>
-                            <p>Ice-cream</p>
-                        </div>
-                        <div className='edit__box'>
-                            <img className='edit' src={EditIcon} alt=""/>
-                        </div>
-                        <div className='remove__box'>
-                            <img className='delete' src={DeleteIcon} alt=""/>
-                        </div>
-                    </div>
-
-                    <div className="table__item">
-                        <div>
-                            <img className='food__image' src={FishIcon} alt="" />
-                        </div>
-                        <div>
-                            <p>Ice-cream</p>
-                        </div>
-                        <div className='edit__box'>
-                            <img className='edit' src={EditIcon} alt=""/>
-                        </div>
-                        <div className='remove__box'>
-                            <img className='delete' src={DeleteIcon} alt=""/>
-                        </div>
-                    </div>
-
-                    <div className="table__item">
-                        <div>
-                            <img className='food__image'  src={FishIcon} alt="" />
-                        </div>
-                        <div>
-                            <p>Ice-cream</p>
-                        </div>
-                        <div className='edit__box'>
-                            <img className='edit' src={EditIcon} alt=""/>
-                        </div>
-                        <div className='remove__box'>
-                            <img className='delete' src={DeleteIcon} alt=""/>
-                        </div>
-                    </div>
+                    {
+                        categories.length>0?
+                            categories.map((category,i)=>(
+                                <div key={i} className="table__item">
+                                    <div>
+                                        <img className='food__image'  src={category.photoURL} alt="" />
+                                    </div>
+                                    <div>
+                                        <p>{category.name}</p>
+                                    </div>
+                                    <div className='edit__box'>
+                                        <img className='edit' src={EditIcon} alt=""/>
+                                    </div>
+                                    <div className='remove__box'>
+                                        <img className='delete' src={DeleteIcon} alt=""/>
+                                    </div>
+                                </div>
+                            ))
+                        :
+                        null
+                    }
 
 
                     {/* <table>
@@ -163,17 +93,17 @@ const Category = () => {
                 <div className="category__mainRight">
                     <div className="right__content">
                         <h1>Add New Category</h1>
-                        <form >
+                        <form onSubmit={onSubmit} >
                             <div className="category__name">
                                 <label htmlFor="name">Category Name</label>
-                                <input type="text" name="" id="name" />
+                                <input value={name} onChange={(e)=>setName(e.target.value)} type="text" name="" id="name" />
                             </div>
 
                             <p>Image</p>
                             <div className="category__image">
                                 <ImageUploading
                                     multiple
-                                    value={images}
+                                    value={image}
                                     onChange={onChange}
                                     dataURLKey="data_url"
                                 >
@@ -223,7 +153,11 @@ const Category = () => {
                 </div>
             </section>
         </div>
+    </Layout>
     );
 }
 
-export default Category;
+const mapStateToProps = states=>({
+    categories:states.categories
+})
+export default connect(mapStateToProps)(Category);

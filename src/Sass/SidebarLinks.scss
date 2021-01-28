@@ -1,7 +1,7 @@
 li{
     display: flex;
     align-items: center;
-    border-radius: 6px;
+   
     // justify-content: space-evenly;
 
 
@@ -13,13 +13,13 @@ li{
         align-items: center;
         // justify-content: space-between;
         // background: #01161E;
-        color: #bebebe;
+        color: #01161E;
         width: 200px;
         height: 50px;
-        background: #fff;
+        background: #FCFBFB;
         // height: 50px;
         // width: 260px;
-        font-size: 14px;
+        font-size: 0.8rem;
         // border-radius: 6px;
         // // padding: 10px 20px;
         // margin-bottom: 1rem;
@@ -35,6 +35,7 @@ li{
     .is-active{
         background: #01161E;
         color: #fff;
+        border-radius: 6px;
     }
 }
 
