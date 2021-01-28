@@ -3,9 +3,11 @@ import AddIcon from '../assests/add.svg';
 import FishIcon from '../assests/fish.svg';
 import EditIcon from '../assests/edit.svg';
 import DeleteIcon from '../assests/delete.svg';
+import Layout from './Layout';
 
 const Extras = () => {
     return (
+    <Layout>
         <div className='extras'>
             <div className="extras__top">
                 <div className="extras__topLeft">
@@ -51,6 +53,7 @@ const Extras = () => {
                 </div>
             </div>
         </div>
+    </Layout>
     );
 }
 

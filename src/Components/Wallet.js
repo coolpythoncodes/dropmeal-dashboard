@@ -1,7 +1,9 @@
 import '../Sass/Wallet.scss'
+import Layout from './Layout';
 
 const Wallet = () => {
     return (
+    <Layout>
         <div className='wallet'>
             <h1>Wallet</h1>
             <div className="wallet__tableHead">
@@ -33,6 +35,7 @@ const Wallet = () => {
                 </div>
             </div>
         </div>
+    </Layout>
     );
 }
 

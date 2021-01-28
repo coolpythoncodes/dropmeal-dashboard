@@ -3,9 +3,11 @@ import AddIcon from '../assests/add.svg';
 import FishIcon from '../assests/fish.svg';
 import EditIcon from '../assests/edit.svg';
 import DeleteIcon from '../assests/delete.svg';
+import Layout from './Layout';
 
 const Meals = () => {
     return (
+        <Layout>
         <div className='meals'>
             <div className="meals__top">
                 <div className="meals__topLeft">
@@ -63,6 +65,7 @@ const Meals = () => {
                 </div>
             </div>
         </div>
+        </Layout>
     );
 }
 
