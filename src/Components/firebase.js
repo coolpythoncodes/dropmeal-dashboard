@@ -24,7 +24,7 @@ const firebaseConfig = {
             USERS:'users',
             ADMIN:'admins',
             TRANSACTIONS:'transactions',
-            BOOKINGS:'bookings',
+            MEALS:'meals',
             ACTIVITIES:'activities',
             AMENITIES:'amenities',
             NOTIFICATIONS:'notifications',
@@ -51,17 +51,42 @@ const firebaseConfig = {
           deleted:0,
           createdAt:this.serverTime
       })
-      await this.storage.ref(this.tables.CATEGORIES+'/'+category.id).child(image.name).put(image)
+      await this.storage.ref(this.tables.CATEGORIES+'/'+category.id).put(image)
       .then(()=>{
-          this.storage.ref(this.tables.CATEGORIES+'/'+category.id).child(image.name).getDownloadURL()
+          this.storage.ref(this.tables.CATEGORIES+'/'+category.id).getDownloadURL()
           .then(async (url)=>{
               await this.firestore.collection(this.tables.CATEGORIES).doc(category.id).update({photoURL:url})
           })
       })
     }
+    updateCategory= async(id, name, image)=>{
+
+        await  this.firestore.collection(this.tables.CATEGORIES).doc(id).update({
+              name,
+          })
+          if(image !== undefined)
+          await this.storage.ref(this.tables.CATEGORIES+'/'+id).put(image)
+          .then(()=>{
+              this.storage.ref(this.tables.CATEGORIES+'/'+id).getDownloadURL()
+              .then(async (url)=>{
+                  await this.firestore.collection(this.tables.CATEGORIES).doc(id).update({photoURL:url})
+              })
+          })
+        }
 
     getCategories = ()=>{
         return  this.firestore.collection(this.tables.CATEGORIES).orderBy('createdAt', 'desc');
+    }
+    deleteCategory = async(id, photoURL)=>{
+       await this.storage.refFromURL(photoURL).delete()
+        .then(async()=>{
+            await this.firestore.collection(this.tables.CATEGORIES).doc(id).delete()
+        })
+        
+    }
+
+    getMeals = ()=>{
+        return  this.firestore.collection(this.tables.MEALS).orderBy('createdAt', 'desc');
     }
     
 }

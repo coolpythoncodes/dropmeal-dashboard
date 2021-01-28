@@ -40,6 +40,11 @@ class App extends Component{
                   data.forEach(doc=>categories.push({...doc.data(), id:doc.id}))
                   this.props.dispatch({type:'GET_CATEGORIES', payload:{categories}})
               })
+              firebase.getMeals().onSnapshot(data=>{
+                const meals = []
+                data.forEach(doc=>meals.push({...doc.data(), id:doc.id}))
+                this.props.dispatch({type:'GET_MEALS', payload:{meals}})
+            })
                 
             })
         }

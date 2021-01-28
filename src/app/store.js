@@ -3,7 +3,7 @@ const initialState={
   user:null,
   userData:null,
   initializing:true,
-  properties:[],
+  meals:[],
   property:null,
   myProperties:[],
   amenities:[],
@@ -47,6 +47,11 @@ const reducer = (prevState =initialState, action)=>{
               ...prevState,
               notifications:action.payload.notifications
           }
+      case 'GET_MEALS':
+        return{
+            ...prevState,
+            meals:action.payload.meals
+        }
     case 'GET_CATEGORIES':
     return{
         ...prevState,
