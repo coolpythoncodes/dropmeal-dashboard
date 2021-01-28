@@ -1,0 +1,104 @@
+.extras__popup {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 9999999999;
+	background: rgba(19, 19, 19, 0.7);
+
+	&Box {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		margin: auto;
+		background: #fff;
+		box-shadow: 0px 10px 49px #afafaf29;
+		border-radius: 20px;
+		padding-top: 29px;
+		padding-left: 49px;
+		padding-right: 37px;
+		width: 440px;
+		height: 90vh;
+	}
+
+	&Top {
+		display: flex;
+		align-items: center;
+		margin-bottom: 60px;
+
+		h1 {
+			color: #bebebe;
+			font-size: 1.5rem;
+		}
+		img {
+			width: 32px;
+			margin-left: auto;
+		}
+	}
+
+	form {
+		width: 280px;
+		margin-top: 40px;
+		// border: green solid;
+
+		label {
+			color: #01161e;
+			font-size: 1rem;
+			font-weight: 600;
+		}
+
+		p {
+			font-size: 0.8rem;
+		}
+
+		.category__image {
+			border: 2px dashed #bebebe;
+			border-radius: 6px;
+			// padding: 10px;
+			margin-top: 10px;
+			padding-top: 30px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 120px;
+            height: 120px;
+		}
+
+		input {
+			width: 100%;
+			border: 1px solid #bebebe;
+			color: #01161e;
+			border-radius: 6px;
+			outline: 0;
+			padding: 10px;
+			font-size: 1rem;
+			margin-top: 1rem;
+			margin-bottom: 2rem;
+		}
+
+		input[type="number"] {
+			-webkit-appearance: textfield;
+			-moz-appearance: textfield;
+            appearance: textfield;
+            
+            &::-webkit-outer-spin-button, &::-webkit-inner-spin-button{
+                -webkit-appearance: none;
+                margin: 0;
+            }
+		}
+
+		button.upload {
+			width: 100%;
+			border-radius: 6px;
+			background: #107fee;
+			border: 0;
+			outline: 0;
+			padding: 10px 0;
+			color: #fff;
+			margin-top: 40px;
+		}
+	}
+}

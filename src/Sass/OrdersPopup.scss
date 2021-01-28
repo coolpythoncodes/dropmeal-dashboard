@@ -1,0 +1,103 @@
+.orders__popup {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 9999999999;
+	background: rgba(19, 19, 19, 0.7);
+
+	.track-button {
+		margin-left: auto;
+		background: #f18701;
+		outline: 0;
+		border: 0;
+		color: #fcfbfb;
+		padding: 9px 22px;
+		border-radius: 9px;
+	}
+
+	.back-button {
+		display: flex;
+		border: 1px solid #107fee;
+		border-radius: 6px;
+		color: #0e89f0;
+		background: inherit;
+		padding: 10px 30px 10px 30px;
+		margin: auto;
+		margin-top: 100px;
+	}
+
+	&Box {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		margin: auto;
+		background: #fff;
+		box-shadow: 0px 10px 49px #afafaf29;
+		border-radius: 20px;
+		width: 440px;
+		height: 90vh;
+		padding-top: 48px;
+		padding-left: 40px;
+		padding-right: 30px;
+	}
+
+	&Top {
+		display: flex;
+		align-items: center;
+
+		h4 {
+			color: #0e89f0;
+			font-size: 0.9rem;
+			font-weight: 100;
+		}
+	}
+
+	&Tracking {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		row-gap: 1rem;
+		margin-top: 50px;
+		padding-bottom: 1.5rem;
+		border-bottom: 1px solid #afafaf29;
+
+		h5 {
+			color: #01161e;
+			font-size: 0.9rem;
+			font-weight: 400;
+		}
+
+		p {
+			font-size: 0.9rem;
+			color: #bebebe;
+		}
+	}
+
+	&Extras {
+		padding-top: 2rem;
+
+		h2 {
+			color: #bebebe;
+			font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+		}
+
+		.extra__items {
+            display: flex;
+
+			p {
+				background: #0e89f0;
+                border-radius: 25px;
+                width: fit-content;
+                color: #fff;
+                font-size: 0.8rem;
+                padding: 12px 25px;
+                margin-right: 1rem;
+			}
+		}
+	}
+}

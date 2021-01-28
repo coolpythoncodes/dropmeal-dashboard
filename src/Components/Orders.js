@@ -1,4 +1,5 @@
 import '../Sass/Orders.scss'
+// import OrdersPopup from './OrdersPopup';
 import TrackButton from './TrackButton'
 import Layout from './Layout';
 
@@ -6,8 +7,8 @@ const Orders = () => {
     return (
     <Layout>
         <div className='orders'>
+            {/* <OrdersPopup /> */}
             <h1>Orders</h1>
-
             <div className="orders__tableHead">
                 <div className='date'>
                     <h2>Date</h2>
