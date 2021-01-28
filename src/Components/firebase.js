@@ -25,8 +25,8 @@ const firebaseConfig = {
             ADMIN:'admins',
             TRANSACTIONS:'transactions',
             MEALS:'meals',
-            ACTIVITIES:'activities',
-            AMENITIES:'amenities',
+            EXTRAS:'extras',
+            ORDERS:'orders',
             NOTIFICATIONS:'notifications',
             PAYMENTS:'payments',
             BOOKED:'bookedDates'
@@ -59,6 +59,15 @@ const firebaseConfig = {
           })
       })
     }
+    addExtra= async(name, price)=>{
+
+        await  this.firestore.collection(this.tables.EXTRAS).add({
+              name,
+              price,
+              deleted:0,
+              createdAt:this.serverTime
+          })
+        }
     updateCategory= async(id, name, image)=>{
 
         await  this.firestore.collection(this.tables.CATEGORIES).doc(id).update({
@@ -74,8 +83,27 @@ const firebaseConfig = {
           })
         }
 
+
+        updateExtra= async(id, name, price)=>{
+
+        await  this.firestore.collection(this.tables.EXTRAS).doc(id).update({
+                name,
+                price
+            })
+        }
+
+
     getCategories = ()=>{
         return  this.firestore.collection(this.tables.CATEGORIES).orderBy('createdAt', 'desc');
+    }
+    geExtras = ()=>{
+        return  this.firestore.collection(this.tables.EXTRAS).orderBy('createdAt', 'desc');
+    }
+    geUsers = ()=>{
+        return  this.firestore.collection(this.tables.USERS).orderBy('createdAt', 'desc');
+    }
+    geOrders = ()=>{
+        return  this.firestore.collection(this.tables.ORDERS).orderBy('createdAt', 'desc');
     }
     deleteCategory = async(id, photoURL)=>{
        await this.storage.refFromURL(photoURL).delete()
@@ -84,6 +112,10 @@ const firebaseConfig = {
         })
         
     }
+    deleteExtra = async(id)=>{
+             await this.firestore.collection(this.tables.EXTRAS).doc(id).delete()
+
+     }
 
     getMeals = ()=>{
         return  this.firestore.collection(this.tables.MEALS).orderBy('createdAt', 'desc');

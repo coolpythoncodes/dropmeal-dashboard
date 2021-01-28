@@ -44,7 +44,22 @@ class App extends Component{
                 const meals = []
                 data.forEach(doc=>meals.push({...doc.data(), id:doc.id}))
                 this.props.dispatch({type:'GET_MEALS', payload:{meals}})
-            })
+              })
+              firebase.geExtras().onSnapshot(data=>{
+                const extras = []
+                data.forEach(doc=>extras.push({...doc.data(), id:doc.id}))
+                this.props.dispatch({type:'GET_EXTRAS', payload:{extras}})
+              })
+              firebase.geUsers().onSnapshot(data=>{
+                const users = []
+                data.forEach(doc=>users.push({...doc.data(), id:doc.id}))
+                this.props.dispatch({type:'GET_USERS', payload:{users}})
+              })
+              firebase.getOrders().onSnapshot(data=>{
+                const orders = []
+                data.forEach(doc=>orders.push({...doc.data(), id:doc.id}))
+                this.props.dispatch({type:'GET_ORDERS', payload:{orders}})
+              })
                 
             })
         }

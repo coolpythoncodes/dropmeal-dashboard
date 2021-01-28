@@ -1,6 +1,5 @@
 import '../Sass/Meals.scss';
 import AddIcon from '../assests/add.svg';
-import FishIcon from '../assests/fish.svg';
 import EditIcon from '../assests/edit.svg';
 import DeleteIcon from '../assests/delete.svg';
 import Layout from './Layout';

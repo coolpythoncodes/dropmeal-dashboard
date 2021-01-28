@@ -1,29 +1,75 @@
 import { useState } from 'react';
 import '../Sass/Extras.scss';
 import AddIcon from '../assests/add.svg';
-import FishIcon from '../assests/fish.svg';
 import EditIcon from '../assests/edit.svg';
 import DeleteIcon from '../assests/delete.svg';
 import Layout from './Layout';
 import ExtrasPopup from './ExtrasPopup';
+import firebase from "./firebase"
+import { connect } from 'react-redux';
 
-const Extras = () => {
+const Extras = ({extras}) => {
 
     const [showPopup, setShowPopup] = useState(false);
-
+    const [update, setUpdate] = useState(false)
     const handleClick = () => {
         setShowPopup(!showPopup);
     }
 
+
+    const [name, setName] = useState('')
+    const [id, setId] = useState('')
+    const [price, setPrice] = useState('')
     const close = () => {
         setShowPopup(!showPopup);
+        setUpdate(false)
+        setName('')
+        setPrice('')
+        setId('')
     }
-
+    const onSubmit = (e)=>{
+        e.preventDefault()
+        if(name==='' || price === ''){
+            return false
+        }
+        firebase.addExtra(name,price)
+        .then(()=>{
+            close()
+            setUpdate(false)
+            setName('')
+            setPrice('')
+            setId('')
+        })
+    }
+    const onUpdate = (e)=>{
+        e.preventDefault()
+        if(name==='' || price === ''){
+            return false
+        }
+        firebase.updateExtra(id,name,price)
+        .then(()=>{
+            close()
+            setUpdate(false)
+            setName('')
+            setPrice('')
+            setId('')
+        })
+    }
+    const onEdit = (data)=>{
+        handleClick()
+        setName(data.name)
+        setPrice(data.price)
+        setId(data.id)
+        setUpdate(true)
+    }
+    const onDelete =(id)=>{
+        firebase.deleteExtra(id)
+    }
     return (
     <Layout>
         <div className='extras'>
             {
-                showPopup && <ExtrasPopup close={close}/>
+                showPopup && <ExtrasPopup onUpdate={onUpdate} update={update} onSubmit={onSubmit} setName={setName} name={name} price={price} setPrice={setPrice} close={close}/>
             }
             <div className="extras__top">
                 <div className="extras__topLeft">
@@ -50,27 +96,35 @@ const Extras = () => {
                         <h2>Delete</h2>
                     </div>
                 </div>
-                <div className="table__item">
-                    <div>
-                        <img className='food__image' src={FishIcon} alt="" />
-                    </div>
-                    <div>
-                        <p>Plantain</p>
-                    </div>
-                    <div className='edit__box'>
-                        <p>N 600</p>
-                    </div>
-                    <div className='edit__box' >
-                        <img className='edit' src={EditIcon} alt="" />
-                    </div>
-                    <div className='remove__box'>
-                        <img className='delete' src={DeleteIcon} alt="" />
-                    </div>
-                </div>
+                {
+                    extras.length>0?
+                        extras.map((extra,i)=>(
+                            <div key={i} className="table__item">
+                                <div>
+                                </div>
+                                <div>
+                                    <p>{extra.name}</p>
+                                </div>
+                                <div className='edit__box'>
+                                    <p>N {extra.price}</p>
+                                </div>
+                                <div className='edit__box' >
+                                    <img onClick={()=>onEdit(extra)} className='edit' src={EditIcon} alt="" />
+                                </div>
+                                <div className='remove__box'>
+                                    <img onClick={()=>onDelete(extra.id)} className='delete' src={DeleteIcon} alt="" />
+                                </div>
+                            </div>
+                        ))
+                    :
+                    null
+                }
             </div>
         </div>
     </Layout>
     );
 }
-
-export default Extras;
+const mapStateToProps =state=>({
+    extras:state.extras
+})
+export default connect(mapStateToProps)(Extras);
