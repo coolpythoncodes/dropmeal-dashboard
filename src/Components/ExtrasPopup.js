@@ -4,7 +4,7 @@ import '../Sass/ExtrasPopup.scss';
 import CloseIcon from '../assests/cancel.svg'
 import ImageUpload from '../assests/imageUpload.svg';
 
-const ExtrasPopup = () => {
+const ExtrasPopup = ({ close }) => {
 
     const [images, setImages] = useState([]);
     const onChange = (imageList, addUpdateIndex) => {
@@ -17,7 +17,7 @@ const ExtrasPopup = () => {
             <div className="extras__popupBox">
                 <div className="extras__popupTop">
                     <h1>Add Extra</h1>
-                    <img src={CloseIcon} alt="" />
+                    <img onClick={close} src={CloseIcon} alt="" />
                 </div>
                 <form >
                     <div className="category__name">

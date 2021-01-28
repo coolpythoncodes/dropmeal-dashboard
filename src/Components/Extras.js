@@ -1,21 +1,35 @@
+import { useState } from 'react';
 import '../Sass/Extras.scss';
 import AddIcon from '../assests/add.svg';
 import FishIcon from '../assests/fish.svg';
 import EditIcon from '../assests/edit.svg';
 import DeleteIcon from '../assests/delete.svg';
 import Layout from './Layout';
-// import ExtrasPopup from './ExtrasPopup';
+import ExtrasPopup from './ExtrasPopup';
 
 const Extras = () => {
+
+    const [showPopup, setShowPopup] = useState(false);
+
+    const handleClick = () => {
+        setShowPopup(!showPopup);
+    }
+
+    const close = () => {
+        setShowPopup(!showPopup);
+    }
+
     return (
     <Layout>
         <div className='extras'>
-            {/* <ExtrasPopup /> */}
+            {
+                showPopup && <ExtrasPopup close={close}/>
+            }
             <div className="extras__top">
                 <div className="extras__topLeft">
                     <h1>Extras</h1>
                 </div>
-                <div className="extras__topRight">
+                <div onClick={handleClick} className="extras__topRight">
                     <p>Add New</p>
                     <img src={AddIcon} alt="" />
                 </div>
