@@ -1,4 +1,4 @@
-import '../Sass/OrdersPopup.scss';
+import '../../Sass/OrdersPopup.scss';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 const OrdersPopup = () => {

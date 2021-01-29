@@ -1,5 +1,5 @@
-import '../Sass/ExtrasPopup.scss';
-import CloseIcon from '../assests/cancel.svg'
+import '../../Sass/ExtrasPopup.scss';
+import CloseIcon from '../../assests/cancel.svg'
 
 const ExtrasPopup = ({ close, name,setName,price, setPrice, onSubmit,update,onUpdate }) => {
 

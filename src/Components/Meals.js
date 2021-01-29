@@ -9,6 +9,7 @@ const Meals = ({meals}) => {
     return (
         <Layout>
         <div className='meals'>
+            {/* <MealsPopup /> */}
             <div className="meals__top">
                 <div className="meals__topLeft">
                     <h1>Meals</h1>

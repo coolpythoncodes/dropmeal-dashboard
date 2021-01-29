@@ -4,7 +4,7 @@ import AddIcon from '../assests/add.svg';
 import EditIcon from '../assests/edit.svg';
 import DeleteIcon from '../assests/delete.svg';
 import Layout from './Layout';
-import ExtrasPopup from './ExtrasPopup';
+import ExtrasPopup from './Popups/ExtrasPopup';
 import firebase from "./firebase"
 import { connect } from 'react-redux';
 
