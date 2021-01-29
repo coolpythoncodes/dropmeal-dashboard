@@ -5,7 +5,7 @@ import FishIcon from '../assests/fish.svg';
 import EditIcon from '../assests/edit.svg';
 import DeleteIcon from '../assests/delete.svg';
 import Layout from './Layout';
-import ExtrasPopup from './ExtrasPopup';
+import ExtrasPopup from './Popups/ExtrasPopup';
 
 const Extras = () => {
 

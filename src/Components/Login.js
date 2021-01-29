@@ -58,7 +58,7 @@ const Login = () => {
                             }
                         </span>
                     </div>
-                    <button>Login</button>
+                    <button type='submit'>Login</button>
                 </form>
             </div>
             <footer>

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import ImageUploading from 'react-images-uploading';
-import '../Sass/ExtrasPopup.scss';
-import CloseIcon from '../assests/cancel.svg'
-import ImageUpload from '../assests/imageUpload.svg';
+import '../../Sass/ExtrasPopup.scss';
+import CloseIcon from '../../assests/cancel.svg'
+import ImageUpload from '../../assests/imageUpload.svg';
 
 const ExtrasPopup = ({ close }) => {
 

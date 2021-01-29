@@ -4,11 +4,13 @@ import FishIcon from '../assests/fish.svg';
 import EditIcon from '../assests/edit.svg';
 import DeleteIcon from '../assests/delete.svg';
 import Layout from './Layout';
+import MealsPopup from './Popups/MealsPopup';
 
 const Meals = () => {
     return (
         <Layout>
         <div className='meals'>
+            <MealsPopup />
             <div className="meals__top">
                 <div className="meals__topLeft">
                     <h1>Meals</h1>
