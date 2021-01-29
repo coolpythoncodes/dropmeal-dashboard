@@ -3,17 +3,13 @@ import AddIcon from '../assests/add.svg';
 import EditIcon from '../assests/edit.svg';
 import DeleteIcon from '../assests/delete.svg';
 import Layout from './Layout';
-<<<<<<< HEAD
-import MealsPopup from './Popups/MealsPopup';
-=======
 import { connect } from 'react-redux';
->>>>>>> 534a195e47f7f75365b418d4a2f2983fedb075e8
 
 const Meals = ({meals}) => {
     return (
         <Layout>
         <div className='meals'>
-            <MealsPopup />
+            {/* <MealsPopup /> */}
             <div className="meals__top">
                 <div className="meals__topLeft">
                     <h1>Meals</h1>

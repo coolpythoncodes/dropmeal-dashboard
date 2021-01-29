@@ -1,13 +1,5 @@
-<<<<<<< HEAD:src/Components/Popups/ExtrasPopup.js
-import { useState } from 'react';
-import ImageUploading from 'react-images-uploading';
 import '../../Sass/ExtrasPopup.scss';
 import CloseIcon from '../../assests/cancel.svg'
-import ImageUpload from '../../assests/imageUpload.svg';
-=======
-import '../Sass/ExtrasPopup.scss';
-import CloseIcon from '../assests/cancel.svg'
->>>>>>> 534a195e47f7f75365b418d4a2f2983fedb075e8:src/Components/ExtrasPopup.js
 
 const ExtrasPopup = ({ close, name,setName,price, setPrice, onSubmit,update,onUpdate }) => {
 
