@@ -3,10 +3,10 @@ const initialState={
   user:null,
   userData:null,
   initializing:true,
-  properties:[],
+  meals:[],
   property:null,
-  myProperties:[],
-  amenities:[],
+  extras:[],
+  orders:[],
   results:[],
   users:[],
   searchQuery:null,
@@ -47,6 +47,16 @@ const reducer = (prevState =initialState, action)=>{
               ...prevState,
               notifications:action.payload.notifications
           }
+      case 'GET_MEALS':
+        return{
+            ...prevState,
+            meals:action.payload.meals
+        }
+    case 'GET_EXTRAS':
+        return{
+            ...prevState,
+            extras:action.payload.extras
+        }
     case 'GET_CATEGORIES':
     return{
         ...prevState,
@@ -63,11 +73,15 @@ const reducer = (prevState =initialState, action)=>{
               ...prevState,
               users:action.payload.users
           }
-   
-      case 'GET_DASHBOARD':
+    case 'GET_ORDERS':
+        return{
+            ...prevState,
+            orders:action.payload.orders
+        }
+      case 'GET_USERS':
           return{
               ...prevState,
-              dashboard:action.payload.dashboard
+              users:action.payload.users
           }
       default:
           return prevState

@@ -1,12 +1,15 @@
 import '../Sass/Meals.scss';
 import AddIcon from '../assests/add.svg';
-import FishIcon from '../assests/fish.svg';
 import EditIcon from '../assests/edit.svg';
 import DeleteIcon from '../assests/delete.svg';
 import Layout from './Layout';
+<<<<<<< HEAD
 import MealsPopup from './Popups/MealsPopup';
+=======
+import { connect } from 'react-redux';
+>>>>>>> 534a195e47f7f75365b418d4a2f2983fedb075e8
 
-const Meals = () => {
+const Meals = ({meals}) => {
     return (
         <Layout>
         <div className='meals'>
@@ -42,33 +45,42 @@ const Meals = () => {
                         <h2>Delete</h2>
                     </div>
                 </div>
-                <div className="table__item">
-                    <div>
-                        <img className='food__image' src={FishIcon} alt="" />
-                    </div>
-                    <div>
-                        <p>Plain Ice Cream</p>
-                    </div>
-                    <div>
-                        <p>Ice Cream</p>
-                    </div>
-                    <div>
-                        <p>N 600</p>
-                    </div>
-                    <div>
-                        <p>Salad, Plantain...</p>
-                    </div>
-                    <div className='edit__box' >
-                        <img className='edit' src={EditIcon} alt="" />
-                    </div>
-                    <div className='remove__box'>
-                        <img className='delete' src={DeleteIcon} alt="" />
-                    </div>
-                </div>
+                {
+                    meals.length>0?
+                        meals.map((meal,i)=>(
+                            <div key={i} className="table__item">
+                                <div>
+                                    <img className='food__image' src={meal.photoURL} alt="" />
+                                </div>
+                                <div>
+                                    <p>{meal.name}</p>
+                                </div>
+                                <div>
+                                    <p>Ice Cream</p>
+                                </div>
+                                <div>
+                                    <p>N {meal.amount}</p>
+                                </div>
+                                <div>
+                                    <p>Salad, Plantain...</p>
+                                </div>
+                                <div className='edit__box' >
+                                    <img className='edit' src={EditIcon} alt="" />
+                                </div>
+                                <div className='remove__box'>
+                                    <img className='delete' src={DeleteIcon} alt="" />
+                                </div>
+                            </div>
+                        ))
+                    :
+                    null
+                }
             </div>
         </div>
         </Layout>
     );
 }
-
-export default Meals;
+const mapStateToProps = state=>({
+    meals:state.meals
+})
+export default connect(mapStateToProps)(Meals);

@@ -3,8 +3,10 @@ import '../Sass/User.scss'
 import EditIcon from '../assests/edit.svg';
 import DeleteIcon from '../assests/delete.svg';
 import Layout from './Layout';
+import { connect } from 'react-redux';
+import {maxStringLength} from "../app/helper"
 
-const User = () => {
+const User = ({users}) => {
     return (
     <Layout>
         <div className='user'>
@@ -31,32 +33,42 @@ const User = () => {
                 </div>
             </div>
 
-            <div className="user__tableItem">
-                <div>
-                    <Avatar />
-                </div>
-                <div>
-                    <p>Delino.ndu@gmail.com</p>
-                </div>
-                <div className='phone__box'>
-                    <p>812434564</p>
-                </div>
-                <div className='address__box'>
-                    <p>32 Hiwssbd...</p>
-                </div>
-                <div className='order__box'>
-                    <p>0</p>
-                </div>
-                <div className='edit__box' >
-                    <img className='edit' src={EditIcon} alt=""/>
-                </div>
-                <div className='remove__box'>
-                    <img className='delete' src={DeleteIcon} alt=""/>
-                </div>
-            </div>
+            {
+                users.length>0?
+                    users.map((user,i)=>(
+                        <div key={i} className="user__tableItem">
+                        <div>
+                            <Avatar />
+                        </div>
+                        <div>
+                            <p>{ maxStringLength(user.email, 15) }</p>
+                        </div>
+                        <div className='phone__box'>
+                            <p>{user.phone}</p>
+                        </div>
+                        <div className='address__box'>
+                            <p>{ user.address&& maxStringLength(user.address, 15)}</p>
+                        </div>
+                        <div className='order__box'>
+                            <p>0</p>
+                        </div>
+                        <div className='edit__box' >
+                            <img className='edit' src={EditIcon} alt=""/>
+                        </div>
+                        <div className='remove__box'>
+                            <img className='delete' src={DeleteIcon} alt=""/>
+                        </div>
+                    </div>
+                    ))
+                :
+                null
+            }
+            
         </div>
     </Layout>
     );
 }
-
-export default User;
+const mapStateToProps =state=>({
+    users:state.users
+})
+export default connect(mapStateToProps)(User);

@@ -24,9 +24,9 @@ const firebaseConfig = {
             USERS:'users',
             ADMIN:'admins',
             TRANSACTIONS:'transactions',
-            BOOKINGS:'bookings',
-            ACTIVITIES:'activities',
-            AMENITIES:'amenities',
+            MEALS:'meals',
+            EXTRAS:'extras',
+            ORDERS:'orders',
             NOTIFICATIONS:'notifications',
             PAYMENTS:'payments',
             BOOKED:'bookedDates'
@@ -51,17 +51,74 @@ const firebaseConfig = {
           deleted:0,
           createdAt:this.serverTime
       })
-      await this.storage.ref(this.tables.CATEGORIES+'/'+category.id).child(image.name).put(image)
+      await this.storage.ref(this.tables.CATEGORIES+'/'+category.id).put(image)
       .then(()=>{
-          this.storage.ref(this.tables.CATEGORIES+'/'+category.id).child(image.name).getDownloadURL()
+          this.storage.ref(this.tables.CATEGORIES+'/'+category.id).getDownloadURL()
           .then(async (url)=>{
               await this.firestore.collection(this.tables.CATEGORIES).doc(category.id).update({photoURL:url})
           })
       })
     }
+    addExtra= async(name, price)=>{
+
+        await  this.firestore.collection(this.tables.EXTRAS).add({
+              name,
+              price,
+              deleted:0,
+              createdAt:this.serverTime
+          })
+        }
+    updateCategory= async(id, name, image)=>{
+
+        await  this.firestore.collection(this.tables.CATEGORIES).doc(id).update({
+              name,
+          })
+          if(image !== undefined)
+          await this.storage.ref(this.tables.CATEGORIES+'/'+id).put(image)
+          .then(()=>{
+              this.storage.ref(this.tables.CATEGORIES+'/'+id).getDownloadURL()
+              .then(async (url)=>{
+                  await this.firestore.collection(this.tables.CATEGORIES).doc(id).update({photoURL:url})
+              })
+          })
+        }
+
+
+        updateExtra= async(id, name, price)=>{
+
+        await  this.firestore.collection(this.tables.EXTRAS).doc(id).update({
+                name,
+                price
+            })
+        }
+
 
     getCategories = ()=>{
         return  this.firestore.collection(this.tables.CATEGORIES).orderBy('createdAt', 'desc');
+    }
+    geExtras = ()=>{
+        return  this.firestore.collection(this.tables.EXTRAS).orderBy('createdAt', 'desc');
+    }
+    geUsers = ()=>{
+        return  this.firestore.collection(this.tables.USERS).orderBy('createdAt', 'desc');
+    }
+    geOrders = ()=>{
+        return  this.firestore.collection(this.tables.ORDERS).orderBy('createdAt', 'desc');
+    }
+    deleteCategory = async(id, photoURL)=>{
+       await this.storage.refFromURL(photoURL).delete()
+        .then(async()=>{
+            await this.firestore.collection(this.tables.CATEGORIES).doc(id).delete()
+        })
+        
+    }
+    deleteExtra = async(id)=>{
+             await this.firestore.collection(this.tables.EXTRAS).doc(id).delete()
+
+     }
+
+    getMeals = ()=>{
+        return  this.firestore.collection(this.tables.MEALS).orderBy('createdAt', 'desc');
     }
     
 }

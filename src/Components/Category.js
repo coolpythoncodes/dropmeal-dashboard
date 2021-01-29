@@ -10,22 +10,58 @@ import Layout from './Layout';
 import firebase from "./firebase"
 import { connect } from 'react-redux';
 
-const Category = ({dispatch, categories}) => {
-    const [images, setImages] = useState([]);
+const Category = ({ categories}) => {
+    const [id, setId] = useState('');
+    const [update, setUpdate] = useState(false);
     const [image, setImage] = useState([]);
     const onChange = (imageList, addUpdateIndex) => {
         setImage(imageList);
-        setImages(imageList[0].file);
     };
     const [name, setName] = useState('')
     const onSubmit = (e)=>{
         e.preventDefault()
-        firebase.addCategory(name, images)
+        if(name ==='' || image.length<1)
+        {
+            return false
+        }
+        firebase.addCategory(name, image[0].file)
         .then(()=>{
+            setUpdate(false)
             setName('')
-            setImages([])
+
             setImage([])
+            setId('')
         })
+    }
+
+    const onUpdate = (e)=>{
+        e.preventDefault()
+        firebase.updateCategory(id, name, image[0].file)
+        .then(()=>{
+            setUpdate(false)
+            setName('')
+
+            setImage([])
+            setId('')
+        })
+    }
+    const onClear = ()=>{
+        setUpdate(false)
+        setName('')
+        setImage([])
+        setId('')
+    }
+    const onDelete =(id, photoURL)=>{
+        firebase.deleteCategory(id, photoURL)
+        .then(()=>{
+
+        })
+    }
+    const onEdit = (data)=>{
+        setName(data.name)
+        setId(data.id)
+        setImage([{data_url:data.photoURL}])
+        setUpdate(true)
     }
 
     return (
@@ -58,10 +94,10 @@ const Category = ({dispatch, categories}) => {
                                         <p>{category.name}</p>
                                     </div>
                                     <div className='edit__box'>
-                                        <img className='edit' src={EditIcon} alt=""/>
+                                        <img onClick={()=>onEdit(category)} className='edit' src={EditIcon} alt=""/>
                                     </div>
                                     <div className='remove__box'>
-                                        <img className='delete' src={DeleteIcon} alt=""/>
+                                        <img onClick={()=>onDelete(category.id, category.photoURL)} className='delete' src={DeleteIcon} alt=""/>
                                     </div>
                                 </div>
                             ))
@@ -93,7 +129,7 @@ const Category = ({dispatch, categories}) => {
                 <div className="category__mainRight">
                     <div className="right__content">
                         <h1>Add New Category</h1>
-                        <form onSubmit={onSubmit} >
+                        <form onSubmit={!update?onSubmit:onUpdate} >
                             <div className="category__name">
                                 <label htmlFor="name">Category Name</label>
                                 <input value={name} onChange={(e)=>setName(e.target.value)} type="text" name="" id="name" />
@@ -147,7 +183,15 @@ const Category = ({dispatch, categories}) => {
                                     )}
                                 </ImageUploading>
                             </div>
-                            <button className='upload' type="submit">Upload</button>
+                            {
+                                !update?
+                                <button className='upload' type="submit">Upload</button>
+                                :
+                                <>
+                                    <button className='upload' type="submit">Update</button>
+                                    <button className='upload' onClick={onClear} type="btn">clear</button>
+                                </>
+                            }
                         </form>
                     </div>
                 </div>
