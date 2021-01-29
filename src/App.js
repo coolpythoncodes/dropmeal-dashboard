@@ -33,7 +33,6 @@ class App extends Component{
                 if(userData.role === 3)
                 this.props.dispatch({type:'RETRIVE_USER', payload:{user,userData}})
 
-
                 this.props.dispatch({type:'SET_STATE', payload:{initializing:false}})
                 firebase.getCategories().onSnapshot(data=>{
                   const categories = []
@@ -50,7 +49,7 @@ class App extends Component{
                 data.forEach(doc=>extras.push({...doc.data(), id:doc.id}))
                 this.props.dispatch({type:'GET_EXTRAS', payload:{extras}})
               })
-              firebase.geUsers().onSnapshot(data=>{
+              firebase.getUsers().onSnapshot(data=>{
                 const users = []
                 data.forEach(doc=>users.push({...doc.data(), id:doc.id}))
                 this.props.dispatch({type:'GET_USERS', payload:{users}})

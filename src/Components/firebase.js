@@ -99,10 +99,10 @@ const firebaseConfig = {
     geExtras = ()=>{
         return  this.firestore.collection(this.tables.EXTRAS).orderBy('createdAt', 'desc');
     }
-    geUsers = ()=>{
+    getUsers = ()=>{
         return  this.firestore.collection(this.tables.USERS).orderBy('createdAt', 'desc');
     }
-    geOrders = ()=>{
+    getOrders = ()=>{
         return  this.firestore.collection(this.tables.ORDERS).orderBy('createdAt', 'desc');
     }
     deleteCategory = async(id, photoURL)=>{
