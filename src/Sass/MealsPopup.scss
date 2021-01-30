@@ -1,0 +1,133 @@
+.meals__popup {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 9999999999;
+	background: #01161e57;
+
+	&Box {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		margin: auto;
+		background: #fff;
+		box-shadow: 0px 10px 49px #afafaf29;
+		width: 800px;
+		padding-top: 40px;
+		padding-left: 71px;
+		padding-right: 41px;
+	}
+
+	&Top {
+		display: flex;
+
+		h2 {
+			color: #bebebe;
+			font-size: 1.5rem;
+		}
+
+		img {
+			width: 32px;
+			margin-left: auto;
+		}
+	}
+
+	&Body {
+		display: flex;
+		// align-items: center;
+	}
+
+	#form {
+		width: 280px;
+		margin-top: 40px;
+		// border: green solid;
+
+		label {
+			color: #01161e;
+			font-size: 0.8rem;
+		}
+
+		p {
+			font-size: 0.8rem;
+		}
+
+		.category__image {
+			border: 2px dashed #bebebe;
+			border-radius: 6px;
+			// padding: 10px;
+			margin-top: 10px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 120px;
+			height: 120px;
+		}
+
+		input {
+			width: 100%;
+			border: 1px solid #bebebe;
+			color: #01161e;
+			border-radius: 6px;
+			outline: 0;
+			padding: 10px;
+			font-size: 1rem;
+			margin-top: 1rem;
+			margin-bottom: 2rem;
+		}
+
+		input[type="number"] {
+			-webkit-appearance: textfield;
+			-moz-appearance: textfield;
+			appearance: textfield;
+
+			&::-webkit-outer-spin-button,
+			&::-webkit-inner-spin-button {
+				-webkit-appearance: none;
+				margin: 0;
+			}
+		}
+
+		button.upload {
+			width: 100%;
+			border-radius: 6px;
+			background: #107fee;
+			border: 0;
+			outline: 0;
+			padding: 10px 0;
+			color: #fff;
+			margin-top: 40px;
+		}
+	}
+
+	.meals__bodyRight {
+		h2 {
+			color: #bebebe;
+			font-size: 1rem;
+		}
+
+		.check-item {
+			border: 1px solid #707070;
+			border-radius: 25px;
+            padding: 5px 15px;
+            width: fit-content;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+
+            input[type='checkbox']{
+                // display: none;
+                margin-left: -10px;
+            }
+        }
+        
+        .selected{
+            background: #0E89F0;
+            color: #fff;
+        }
+	}
+}

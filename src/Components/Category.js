@@ -122,7 +122,6 @@ const Category = ({ categories}) => {
                                 <td>Otto</td>
                                 <td>@mdo</td>
                             </tr>
-
                         </tbody> 
                     </table> */}
                 </div>

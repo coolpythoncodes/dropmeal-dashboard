@@ -1,20 +1,35 @@
+import { useState } from 'react';
 import '../Sass/Meals.scss';
 import AddIcon from '../assests/add.svg';
 import EditIcon from '../assests/edit.svg';
 import DeleteIcon from '../assests/delete.svg';
 import Layout from './Layout';
 import { connect } from 'react-redux';
+import MealsPopup from './Popups/MealsPopup';
 
 const Meals = ({meals}) => {
+
+    const [showPopup, setShowPopup] = useState(false);
+    
+    const close = () => {
+        setShowPopup(!showPopup)
+    }
+
+    const open = () => {
+        setShowPopup(!showPopup)
+    }
+
     return (
         <Layout>
         <div className='meals'>
-            {/* <MealsPopup /> */}
+            {
+                showPopup && <MealsPopup close={close}/>
+            }
             <div className="meals__top">
                 <div className="meals__topLeft">
                     <h1>Meals</h1>
                 </div>
-                <div className="meals__topRight">
+                <div className="meals__topRight" onClick={open} >
                     <p>Add New</p>
                     <img src={AddIcon} alt="" />
                 </div>
