@@ -1,7 +1,8 @@
 import '../../Sass/OrdersPopup.scss';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
-const OrdersPopup = () => {
+const OrdersPopup = ({ closePopup }) => {
+
     return (
         <div className='orders__popup'>
             <div className="orders__popupBox">
@@ -51,7 +52,7 @@ const OrdersPopup = () => {
 
                 <button className="back-button">
                     <ArrowBackIosIcon style={{ fontSize: 15, color: "#0E89F0", marginRight: "0.5rem" }} />
-                    <p>Back to order</p>
+                    <p onClick={closePopup}>Back to order</p>
                 </button>
             </div>
         </div>
