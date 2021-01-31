@@ -1,8 +1,15 @@
 import '../Sass/TrackButton.scss';
 
-const TrackButton = ({ color }) => {
+const TrackButton = ({ color, openPopup }) => {
+
     return (
-        <button className='track__button' style={{background:`${color}`}} >
+        <button 
+            className='track__button' 
+            style={{
+                background:`${color}`
+            }} 
+            onClick={openPopup}
+        >
             Track
         </button>
     );

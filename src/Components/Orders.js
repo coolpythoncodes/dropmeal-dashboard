@@ -1,15 +1,29 @@
-import '../Sass/Orders.scss'
-// import OrdersPopup from './Popups/OrdersPopup';
-import TrackButton from './TrackButton'
+import { useState } from 'react';
+import '../Sass/Orders.scss';
+import OrdersPopup from './Popups/OrdersPopup';
+import TrackButton from './TrackButton';
 import Layout from './Layout';
 import { connect } from 'react-redux';
 import { maxStringLength, moment } from '../app/helper';
 
 const Orders = ({orders}) => {
+
+    const [showPopup, setShowPopup] = useState(false);
+
+    const openPopup = () => {
+        setShowPopup(!showPopup);
+    }
+
+    const closePopup = () => {
+        setShowPopup(!showPopup);
+    }
+
     return (
     <Layout>
         <div className='orders'>
-            {/* <OrdersPopup /> */}
+            {
+                showPopup && <OrdersPopup closePopup={closePopup} />
+            }
             <h1>Orders</h1>
             <div className="orders__tableHead">
                 <div className='date'>
@@ -60,7 +74,7 @@ const Orders = ({orders}) => {
                             <p style={{color: order.status === 'processing'?'#DA2C38':'#40AB03', textTransform:'capitalize'}}>{order.status}</p>
                             {
                                 order.status === 'processing'?
-                                <TrackButton color='#F18701'/>
+                                <TrackButton openPopup={openPopup} color='#F18701'/>
                                 :
                                 <TrackButton color='#E6B67A'/>
                             }
@@ -71,7 +85,7 @@ const Orders = ({orders}) => {
                 null
             }
 
-            <div className="orders__tableItem">
+            {/* <div className="orders__tableItem">
                 <div className='date'>
                     <p>31-12-202</p>
                 </div>
@@ -94,7 +108,7 @@ const Orders = ({orders}) => {
                     <p style={{color:'#40AB03'}}>Delivered</p>
                     <TrackButton color='#E6B67A'/>
                 </div>
-            </div>
+            </div> */}
         </div>
     </Layout>
     );
