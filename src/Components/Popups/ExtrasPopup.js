@@ -12,12 +12,12 @@ const ExtrasPopup = ({ close, name,setName,price, setPrice, onSubmit,update,onUp
                 </div>
                 <form onSubmit={(e)=>{ if(update){ onUpdate(e)} else{ onSubmit(e)}}}>
                     <div className="category__name">
-                        <label htmlFor="name">Category Name</label>
-                        <input value={name} onChange={(e)=>setName(e.target.value)} type="text" name="" id="name" />
+                        <label>Category Name</label>
+                        <input type="text" value={name} onChange={(e)=>setName(e.target.value)} name="" />
                     </div>
                     <div className="category__name">
-                        <label htmlFor="name">Price</label>
-                        <input type="number" value={price} onChange={(e)=>setPrice(e.target.value)} name="" id="name" step="0" min='0' />
+                        <label>Price</label>
+                        <input type="number" value={price} onChange={(e)=>setPrice(e.target.value)} name="" step="0" min='0' />
                     </div>
                     <button className='upload' type="submit">{update?'Update':'Upload'}</button>
                 </form>

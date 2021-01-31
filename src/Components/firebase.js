@@ -63,7 +63,7 @@ const firebaseConfig = {
 
         await  this.firestore.collection(this.tables.EXTRAS).add({
               name,
-              price,
+              amount:Number(price),
               deleted:0,
               createdAt:this.serverTime
           })
@@ -88,7 +88,7 @@ const firebaseConfig = {
 
         await  this.firestore.collection(this.tables.EXTRAS).doc(id).update({
                 name,
-                price
+                amount:Number(price)
             })
         }
 
@@ -122,6 +122,69 @@ const firebaseConfig = {
 
     getMeals = ()=>{
         return  this.firestore.collection(this.tables.MEALS).orderBy('createdAt', 'desc');
+    }
+    addMeals= async(name,category, price, extras, image, kitchen,details,catname)=>{
+        let searchIndex = [];
+        const allString = name+' '+kitchen+' '+catname
+        const string = allString.toLowerCase().split(' ');
+        string.forEach(word=>{
+            let newWord = ''
+            for(let i=0;i<word.length; i++){
+                newWord +=word.charAt(i)
+                searchIndex.push(newWord)
+            }
+        })
+        const meal = await  this.firestore.collection(this.tables.MEALS).add({
+              name,
+              amount:Number(price),
+              categoryId:category,
+              extras,
+              photoURL:null,
+              keywords:searchIndex,
+              kitchen,
+              details,
+              deleted:0,
+              createdAt:this.serverTime
+          })
+          await this.storage.ref(this.tables.MEALS+'/'+meal.id).put(image)
+          .then(()=>{
+              this.storage.ref(this.tables.MEALS+'/'+meal.id).getDownloadURL()
+              .then(async (url)=>{
+                  await this.firestore.collection(this.tables.MEALS).doc(meal.id).update({photoURL:url})
+              })
+          })
+    }
+
+    updateMeals= async(id,img,name,category, price, extras, image, kitchen,details, catname)=>{
+        let searchIndex = [];
+        const allString = name+' '+kitchen+' '+catname
+        const string = allString.toLowerCase().split(' ');
+        string.forEach(word=>{
+            let newWord = ''
+            for(let i=0;i<word.length; i++){
+                newWord +=word.charAt(i)
+                searchIndex.push(newWord)
+            }
+        })
+        this.firestore.collection(this.tables.MEALS).doc(id).update({
+              name,
+              amount:Number(price),
+              categoryId:category,
+              extras,
+              keywords:searchIndex,
+              kitchen,
+              details,
+          })
+          if(img){
+              
+            await this.storage.ref(this.tables.MEALS+'/'+id).put(image)
+            .then(()=>{
+                this.storage.ref(this.tables.MEALS+'/'+id).getDownloadURL()
+                .then(async (url)=>{
+                    await this.firestore.collection(this.tables.MEALS).doc(id).update({photoURL:url})
+                })
+            })
+          }
     }
     
 }

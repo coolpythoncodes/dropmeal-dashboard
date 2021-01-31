@@ -106,7 +106,7 @@ const Extras = ({extras}) => {
                                     <p>{extra.name}</p>
                                 </div>
                                 <div className='edit__box'>
-                                    <p>N {extra.price}</p>
+                                    <p>N {extra.amount}</p>
                                 </div>
                                 <div className='edit__box' >
                                     <img onClick={()=>onEdit(extra)} className='edit' src={EditIcon} alt="" />
