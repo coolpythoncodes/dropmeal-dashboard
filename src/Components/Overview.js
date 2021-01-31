@@ -12,8 +12,10 @@ import {
 import LatestDelivery from './LatestDelivery';
 import NewUsers from './NewUsers';
 import Layout from './Layout';
+import { connect } from 'react-redux';
+import { moment, maxStringLength } from '../app/helper';
 
-const Overview = () => {
+const Overview = ({users, sales, deli,vat}) => {
     const data = [
         {x: 0, y: 10},
         {x: 1, y: 12},
@@ -29,11 +31,11 @@ const Overview = () => {
             <section className="overview__top">
                 <div className="overview__topSales">
                     <small>Total Sales</small>
-                    <h1>N 500,000.000</h1>
+                    <h1>N {sales+deli+vat}</h1>
                 </div>
                 <div className="overview__topIncome">
                     <small>Total Income</small>
-                    <h1>N 300,000.000</h1>
+                    <h1>N {deli}</h1>
                 </div>
                 <div className="overview__topUsers">
                     <small>Total Users</small>
@@ -41,7 +43,7 @@ const Overview = () => {
                 </div>
                 <div className="overview__topUsers2">
                     <small>Total Users</small>
-                    <h1>2000</h1>
+                    <h1>{users.length}</h1>
                 </div>
             </section>
 
@@ -105,26 +107,28 @@ const Overview = () => {
 
             <section className="newest__user">
                 <h1>Newest Users</h1>
-                <NewUsers
-                    name='Holland Ray'
-                    time='2hrs'
-                />
-                <NewUsers
-                    name='Holland Ray'
-                    time='2hrs'
-                />
-                <NewUsers
-                    name='Holland Ray'
-                    time='2hrs'
-                />
-                <NewUsers
-                    name='Holland Ray'
-                    time='2hrs'
-                />
+                {
+                    users.length>0?
+                        users.map((user,i)=>{
+                            if(i< 4)
+                            return <NewUsers key={i}
+                            name={maxStringLength(user.fullname, 15)}
+                            time={moment(user.createdAt)}
+                        />
+                        return ''
+                        })
+                    :
+                    null
+                }
             </section>
         </div>
         </Layout>
     );
 }
-
-export default Overview;
+const mapStateToProps = state=>({
+    users:state.users,
+    sales:state.sales,
+    deli:state.deli,
+    vat:state.vat
+})
+export default connect(mapStateToProps)(Overview);

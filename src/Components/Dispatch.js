@@ -1,60 +1,56 @@
 import '../Sass/Dispatch.scss'
 import TrackButton from './TrackButton';
 import Layout from './Layout';
+import { connect } from 'react-redux';
+import { maxStringLength, moment } from '../app/helper';
 
-const Dispatch = () => {
+const Dispatch = ({dispatchers}) => {
     return (
     <Layout>
         <div className='dispatch'>
             <h1>Dispatch</h1>
             <div className="dispatch__tableHead">
                 <div className='date'>
-                    <h2>Dispatch</h2>
+                    <h2>Dispatcher</h2>
                 </div>
                 <div>
-                    <h2>Reg.</h2>
+                    <h2>Email</h2>
                 </div>
                 <div>
-                    <h2>IP</h2>
+                    <h2>CreatedAt</h2>
                 </div>
                 <div>
                     <h2>Status</h2>
                 </div>
             </div>
-            <div className="dispatch__tableItem">
-                <div className='date'>
-                    <p>4 hrs ago</p>
-                </div>
-                <div>
-                    <p>delino.ndu@gmail.co</p>
-                </div>
-                <div>
-                    <p>delino.ndu@gmail.co</p>
-                </div>
-                <div className='status' >
-                    <p style={{color:'#007CAB'}}>Active</p>
-                    <TrackButton color='#F18701'/>
-                </div>
-            </div>
+            {
+                dispatchers.length>0?
+                    dispatchers.map((dispatcher,i)=>(
+                        <div key={i} className="dispatch__tableItem">
+                        <div className='date'>
+                            <p>{maxStringLength(dispatcher.fullname,20)}</p>
+                        </div>
+                        <div>
+                            <p>{maxStringLength(dispatcher.email, 20)}</p>
+                        </div>
+                        <div>
+                            <p>{moment(dispatcher.createdAt)}</p>
+                        </div>
+                        <div className='status' >
+                            <p style={{color:!dispatcher.deleted?'#007CAB':''}}>{!dispatcher.deleted?'Active':'Inactive'}</p>
+                            <TrackButton color={!dispatcher.deleted?'#F18701':'#E6B67A'}/>
+                        </div>
+                    </div>
+                    ))
+                :
+                null
+            }
 
-            <div className="dispatch__tableItem">
-                <div className='date' > 
-                    <p>31-12-202</p>
-                </div>
-                <div>
-                    <p>belloray@gmail.com</p>
-                </div>
-                <div>
-                    <p>belloray@gmail.com</p>
-                </div>
-                <div className='status' >
-                    <p>Inactive</p>
-                    <TrackButton color='#E6B67A'/>
-                </div>
-            </div>
         </div>
     </Layout>
     );
 }
-
-export default Dispatch;
+const mapStateToProps = state=>({
+    dispatchers:state.dispatchers
+})
+export default connect(mapStateToProps)(Dispatch);

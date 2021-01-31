@@ -1,8 +1,9 @@
 .new__users{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     margin-bottom: 21px;
+    position: relative;
 
     p{
         font-size: 14px;

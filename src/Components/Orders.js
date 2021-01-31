@@ -42,7 +42,7 @@ const Orders = ({orders}) => {
                             <p>{moment(order.createdAt)}</p>
                         </div>
                         <div>
-                            <p>{order.pickup && maxStringLength(order.pickup, 15)}</p>
+                            <p>{order.customerEmail && maxStringLength(order.customerEmail, 15)}</p>
                         </div>
                         <div>
                             <p>#REF{order.ref}</p>
@@ -54,10 +54,10 @@ const Orders = ({orders}) => {
                             <p>N {(order.delivery+order.totalAmount+order.vat).toFixed(2)}</p>
                         </div>
                         <div>
-                            <p>Wallet</p>
+                            <p>{order.wallet?'Wallet':'Paystack'}</p>
                         </div>
                         <div className='status'>
-                            <p style={{color: order.status === 'processing'?'#DA2C38':'#40AB03', textTransform:'capitalize'}}>{order.status}</p>
+                            <p style={{color: order.status === 'processing'?'#DA2C38':(order.status === 'pickup'?'blue':'#40AB03'), textTransform:'capitalize'}}>{order.status}</p>
                             {
                                 order.status === 'processing'?
                                 <TrackButton color='#F18701'/>
@@ -71,30 +71,6 @@ const Orders = ({orders}) => {
                 null
             }
 
-            <div className="orders__tableItem">
-                <div className='date'>
-                    <p>31-12-202</p>
-                </div>
-                <div>
-                    <p>belloray@gmail.com</p>
-                </div>
-                <div>
-                    <p>#REF238932433</p>
-                </div>
-                <div>
-                    <p>Ice cream, Burger</p>
-                </div>
-                <div>
-                    <p>N 3456</p>
-                </div>
-                <div>
-                    <p>Paystack</p>
-                </div>
-                <div className='status' >
-                    <p style={{color:'#40AB03'}}>Delivered</p>
-                    <TrackButton color='#E6B67A'/>
-                </div>
-            </div>
         </div>
     </Layout>
     );

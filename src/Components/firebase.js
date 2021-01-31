@@ -28,7 +28,7 @@ const firebaseConfig = {
             EXTRAS:'extras',
             ORDERS:'orders',
             NOTIFICATIONS:'notifications',
-            PAYMENTS:'payments',
+            DISPATCHERS:'dispatchers',
             BOOKED:'bookedDates'
         }
         this.serverTime = firebase.firestore.Timestamp.now().seconds
@@ -101,6 +101,9 @@ const firebaseConfig = {
     }
     getUsers = ()=>{
         return  this.firestore.collection(this.tables.USERS).orderBy('createdAt', 'desc');
+    }
+    getDispatchers = ()=>{
+        return  this.firestore.collection(this.tables.DISPATCHERS).orderBy('createdAt', 'desc');
     }
     getOrders = ()=>{
         return  this.firestore.collection(this.tables.ORDERS).orderBy('createdAt', 'desc');

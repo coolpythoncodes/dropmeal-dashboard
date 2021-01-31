@@ -50,7 +50,7 @@ const User = ({users}) => {
                             <p>{ user.address&& maxStringLength(user.address, 15)}</p>
                         </div>
                         <div className='order__box'>
-                            <p>0</p>
+                            <p>{user.numOfOrders}</p>
                         </div>
                         <div className='edit__box' >
                             <img className='edit' src={EditIcon} alt=""/>

@@ -25,8 +25,8 @@ const NewUsers = ({ name,time }) => {
     return (
         <div className='new__users'>
             <Avatar className={classes.small} />
-            <p>{name}</p>
-            <p>{time} ago</p>
+            <p style={{position:'absolute', left:40}}>{name}</p>
+            <p style={{position:'absolute', left:170}}>{time}</p>
             <a href="/">See more</a>
         </div>
     );

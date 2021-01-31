@@ -7,7 +7,10 @@ const initialState={
   property:null,
   extras:[],
   orders:[],
-  results:[],
+  sales:0,
+  deli:0,
+  vat:0,
+  dispatchers:[],
   users:[],
   searchQuery:null,
   dashboard:true,
@@ -76,7 +79,16 @@ const reducer = (prevState =initialState, action)=>{
     case 'GET_ORDERS':
         return{
             ...prevState,
-            orders:action.payload.orders
+            orders:action.payload.orders,
+            sales:action.payload.sales,
+            deli:action.payload.deli,
+            vat:action.payload.vat,
+            
+        }
+    case 'GET_DISPATCHERS':
+        return{
+            ...prevState,
+            dispatchers:action.payload.dispatchers
         }
       case 'GET_USERS':
           return{
