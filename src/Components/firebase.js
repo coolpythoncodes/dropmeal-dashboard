@@ -138,6 +138,7 @@ const firebaseConfig = {
               name,
               amount:Number(price),
               categoryId:category,
+              category:catname,
               extras,
               photoURL:null,
               keywords:searchIndex,
@@ -154,7 +155,13 @@ const firebaseConfig = {
               })
           })
     }
-
+    deleteMeal = async(id, photoURL)=>{
+        await this.storage.refFromURL(photoURL).delete()
+         .then(async()=>{
+             await this.firestore.collection(this.tables.MEALS).doc(id).delete()
+         })
+         
+     }
     updateMeals= async(id,img,name,category, price, extras, image, kitchen,details, catname)=>{
         let searchIndex = [];
         const allString = name+' '+kitchen+' '+catname
@@ -171,6 +178,7 @@ const firebaseConfig = {
               amount:Number(price),
               categoryId:category,
               extras,
+              category:catname,
               keywords:searchIndex,
               kitchen,
               details,

@@ -71,6 +71,12 @@ const Meals = ({meals,extras,categories}) => {
             setImg(false)
         })
     }
+    const onDelete = (data)=>{
+        firebase.deleteMeal(data.id, data.photoURL)
+        .then(()=>{
+
+        })
+    }
     const onEdit = (data)=>{
         open()
 
@@ -132,7 +138,7 @@ const Meals = ({meals,extras,categories}) => {
                                     <p>{meal.name}</p>
                                 </div>
                                 <div>
-                                    <p>Ice Cream</p>
+                                    <p>{meal.category}</p>
                                 </div>
                                 <div>
                                     <p>N {meal.amount}</p>
@@ -144,7 +150,7 @@ const Meals = ({meals,extras,categories}) => {
                                     <img className='edit' onClick={()=>onEdit(meal)} src={EditIcon} alt="" />
                                 </div>
                                 <div className='remove__box'>
-                                    <img className='delete' src={DeleteIcon} alt="" />
+                                    <img className='delete' onClick={()=>onDelete(meal)} src={DeleteIcon} alt="" />
                                 </div>
                             </div>
                         ))
