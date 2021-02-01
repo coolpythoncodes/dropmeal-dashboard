@@ -6,11 +6,24 @@ import Layout from './Layout';
 import { connect } from 'react-redux';
 import { maxStringLength, moment } from '../app/helper';
 
-const Orders = ({orders}) => {
+const Orders = ({orders, dispatchers}) => {
 
     const [showPopup, setShowPopup] = useState(false);
-
-    const openPopup = () => {
+    const [email, setEmail] = useState('')
+    const [refs, setRefs] = useState('')
+    const [meals, setMeals] = useState('')
+    const [status, setStatus] = useState('')
+    const [amount, setAmount] = useState('')
+    const [wallet, setWallet] = useState(false)
+    const [mobile, setMobile] = useState('')
+    const openPopup = (data) => {
+        setEmail(data.customerEmail)
+        setRefs(data.ref)
+        setMeals(data.meals)
+        setStatus(data.status)
+        setAmount(data.delivery+data.totalAmount+data.vat)
+        setWallet(data.wallet)
+        setMobile(data.phone)
         setShowPopup(!showPopup);
     }
 
@@ -22,7 +35,7 @@ const Orders = ({orders}) => {
     <Layout>
         <div className='orders'>
             {
-                showPopup && <OrdersPopup closePopup={closePopup} />
+                showPopup && <OrdersPopup mobile={mobile} dispatchers={dispatchers} customerEmail={email} refs={refs} wallet={wallet} status={status} amount={amount} meals={meals} closePopup={closePopup} />
             }
             <h1>Orders</h1>
             <div className="orders__tableHead">
@@ -36,7 +49,7 @@ const Orders = ({orders}) => {
                     <h2>Ref Number</h2>
                 </div>
                 <div>
-                    <h2>Item</h2>
+                    <h2>Address</h2>
                 </div>
                 <div>
                     <h2>Cost</h2>
@@ -62,7 +75,7 @@ const Orders = ({orders}) => {
                             <p>#REF{order.ref}</p>
                         </div>
                         <div>
-                            <p>{maxStringLength(order.meals[0].name,15)}</p>
+                            <p style={{textOverflow:'ellipsis'}}>{order.address}</p>
                         </div>
                         <div>
                             <p>N {(order.delivery+order.totalAmount+order.vat).toFixed(2)}</p>
@@ -74,7 +87,7 @@ const Orders = ({orders}) => {
                             <p style={{color: order.status === 'processing'?'#DA2C38':(order.status === 'pickup'?'blue':'#40AB03'), textTransform:'capitalize'}}>{order.status}</p>
                             {
                                 order.status === 'processing'?
-                                <TrackButton openPopup={openPopup} color='#F18701'/>
+                                <TrackButton cursor="pointer" openPopup={()=>openPopup(order)} color='#F18701'/>
                                 :
                                 <TrackButton color='#E6B67A'/>
                             }
@@ -114,6 +127,7 @@ const Orders = ({orders}) => {
     );
 }
 const mapStateToProps = state=>({
-    orders:state.orders
+    orders:state.orders,
+    dispatchers:state.dispatchers
 })
 export default connect(mapStateToProps)(Orders);

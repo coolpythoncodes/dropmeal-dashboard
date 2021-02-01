@@ -16,7 +16,35 @@
 		padding: 9px 22px;
 		border-radius: 9px;
 	}
+.orders__popupTracking{
+		overflow-y: scroll;
+		height: 40%;
+		padding-right: 5px;
+		div> div{
+			display: flex;
+			justify-content: space-between;
+		}
+		.meals{
+			margin:10px 0;
+			padding: 10px 0;
+			border-top: 1px solid #afafaf29;
+		}
 
+}
+ input, select,textarea {
+	width: 100%;
+	border: 1px solid #bebebe;
+	color: #01161e;
+	border-radius: 6px;
+	outline: 0;
+	padding: 10px;
+	font-size: 0.8rem;
+	margin-top: 0.1rem;
+	margin-bottom: 0.8rem;
+}
+.orders__popupTracking + div P, textarea + div P{
+	font-size: 0.8rem;
+}
 	.back-button {
 		display: flex;
 		border: 1px solid #107fee;
@@ -26,6 +54,7 @@
 		background: inherit;
 		padding: 10px 30px 10px 30px;
 		margin: auto;
+		cursor: pointer;
 
 		// margin-top: 100px;
 	}
@@ -59,9 +88,9 @@
 	}
 
 	&Tracking {
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
+
 		row-gap: 1rem;
+		width: 100%;
 		margin-top: 50px;
 		padding-bottom: 1.5rem;
 		border-bottom: 1px solid #afafaf29;
@@ -101,5 +130,11 @@
                 margin-right: 1rem;
 			}
 		}
+	}
+	.buttons{
+		display: flex;
+		width: 100%;
+		margin-top: 20px;
+		justify-content: space-between;
 	}
 }

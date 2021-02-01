@@ -194,6 +194,15 @@ const firebaseConfig = {
             })
           }
     }
+
+
+
+    processOrder = async(id,dispatcherId,pickup)=>{
+          await this.firestore.collection(this.tables.ORDERS).doc(id).update({
+            dispatcherId,
+            pickup
+        })
+    }
     
 }
 export default new Firebase();
