@@ -41,7 +41,7 @@ const User = ({users}) => {
                             <Avatar />
                         </div>
                         <div>
-                            <p>{ maxStringLength(user.email, 15) }</p>
+                            <p>{ user.email && maxStringLength(user.email, 15) }</p>
                         </div>
                         <div className='phone__box'>
                             <p>{user.phone}</p>

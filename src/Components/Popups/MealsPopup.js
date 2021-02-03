@@ -4,7 +4,7 @@ import ImageUploading from 'react-images-uploading';
 import ImageUpload from '../../assests/imageUpload.svg';
 import CloseIcon from '../../assests/cancel.svg';
 
-const MealsPopup = ({setImg,onUpdate, checkedItems, setCheckedItems, detail, setDetail,categories, close,extras, onSubmit, name, setName, category, setCategory, kitchen, setKitchen, image, setImage, extra, setExtra,price, setPrice,update }) => {
+const MealsPopup = ({kitchens,setImg,onUpdate, checkedItems, setCheckedItems, detail, setDetail,categories, close,extras, onSubmit, name, setName, category, setCategory, kitchen, setKitchen, image, setImage, extra, setExtra,price, setPrice,update }) => {
 
     // const [isSelected, setIsSelected] = useState(false);
 
@@ -121,7 +121,15 @@ const MealsPopup = ({setImg,onUpdate, checkedItems, setCheckedItems, detail, set
                             </div>
                             <div className="category__name">
                                 <label htmlFor="kitchen">Kitchen</label>
-                                <input type="text" value={kitchen} onChange={(e)=>setKitchen(e.target.value)} name="kitchen" id="kitchen" />
+                                <select defaultValue={kitchen}  name="kitchen" id="kitchen" onChange={(e)=>setKitchen(e.target.value)}>
+                                    <option value="">Choose Kitchen</option>
+                                    {
+                                        kitchens.length>0&&
+                                        kitchens.map((kitchen,i)=>(
+                                        <option value={kitchen.id} key={i}>{kitchen.name}</option>
+                                        ))
+                                    }
+                                </select>
                             </div>
                             <div className="category__name">
                                 <label htmlFor="detail">Details</label>

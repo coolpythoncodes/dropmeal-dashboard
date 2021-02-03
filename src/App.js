@@ -67,10 +67,17 @@ class App extends Component{
                 })
                 this.props.dispatch({type:'GET_ORDERS', payload:{orders,sales,deli,vat}})
               })
+
               firebase.getDispatchers().onSnapshot(data=>{
                 const dispatchers = []
                 data.forEach(doc=>dispatchers.push({...doc.data(), id:doc.id}))
                 this.props.dispatch({type:'GET_DISPATCHERS', payload:{dispatchers}})
+              })
+
+              firebase.getKitchens().onSnapshot(data=>{
+                const kitchens = []
+                data.forEach(doc=>kitchens.push({...doc.data(), id:doc.id}))
+                this.props.dispatch({type:'GET_KITCHENS', payload:{kitchens}})
               })
                 
             })

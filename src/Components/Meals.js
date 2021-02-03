@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import MealsPopup from './Popups/MealsPopup';
 import firebase from '../Components/firebase'
 
-const Meals = ({meals,extras,categories}) => {
+const Meals = ({meals,extr,categories, kitchens}) => {
 
     const [showPopup, setShowPopup] = useState(false);
     const [name, setName] = useState('');
@@ -18,9 +18,11 @@ const Meals = ({meals,extras,categories}) => {
     const [id, setId] = useState('');
     const [category, setCategory] = useState('');
     const [extra, setExtra] = useState([]);
+    const [extras, setExtras] = useState([]);
     const [img, setImg] = useState(false);
     // const [catname, setCatname] = useState('');
     const [checkedItems, setCheckedItems] = useState([]);
+    const [kitchenId, setKitchenId] = useState('');
     const [kitchen, setKitchen] = useState('');
     const [image, setImage] = useState(null);
     
@@ -28,12 +30,28 @@ const Meals = ({meals,extras,categories}) => {
         setShowPopup(!showPopup)
     }
 
+    const onSetKitchen=(id)=>{
+       let name = null
+        const extra = extr.filter(item=>item.kitchen === id)
+        const kitchenName = kitchens.filter(item=>item.id === id)
+        if(kitchenName.length>0){
+            name =kitchenName[0].name
+            
+        }
+        setKitchen(name)
+        setExtras(extra)
+        setKitchenId(id)
+        
+
+    }
     const open = () => {
         setName('')
         setPrice('')
         setCheckedItems([])
         setCategory('')
-        setKitchen('')
+        setKitchenId('')
+        setExtras([])
+        setExtra([])
         setDetail('')
         setId('')
         setImage(null)
@@ -45,14 +63,15 @@ const Meals = ({meals,extras,categories}) => {
         e.preventDefault()
         const cat = categories.filter(cate=>cate.id === category)
 
-        if(name === '' || category === '' || price ==='' || kitchen === '' || detail === '' || image === null){
+        if(name === '' || category === '' || price ==='' || kitchen === ''|| kitchenId === '' || detail === '' || image === null){
             return
         }
         
-        firebase.addMeals(name,category,price,checkedItems,image[0].file,kitchen, detail, cat[0].name)
+        firebase.addMeals(name,category,price,checkedItems,image[0].file,kitchen, detail, cat[0].name, kitchenId)
         .then(()=>{
             close()
             setCheckedItems([])
+            setExtras([])
         })
     }
 
@@ -60,15 +79,15 @@ const Meals = ({meals,extras,categories}) => {
         e.preventDefault()
         const cat = categories.filter(cate=>cate.id === category)
         // setCatname(cat[0].name)
-        console.log(img)
-        if(name === '' || category === '' || price ==='' || kitchen === '' || image === null){
+        if(name === '' || category === '' || price ==='' || kitchen === '' || kitchenId === '' || image === null){
             return
         }
-        firebase.updateMeals(id, img, name, category,price,checkedItems,image[0].file,kitchen, detail, cat[0].name)
+        firebase.updateMeals(id, img, name, category,price,checkedItems,image[0].file,kitchen, detail, cat[0].name, kitchenId)
         .then(()=>{
             close()
             setCheckedItems([])
             setImg(false)
+            setExtras([])
         })
     }
     const onDelete = (data)=>{
@@ -84,7 +103,7 @@ const Meals = ({meals,extras,categories}) => {
         setPrice(data.amount)
         setCheckedItems(data.extras)
         setCategory(data.categoryId)
-        setKitchen(data.kitchen)
+        onSetKitchen(data.kitchenId)
         setDetail(data.details)
         setId(data.id)
         setImage([{data_url:data.photoURL}])
@@ -94,7 +113,7 @@ const Meals = ({meals,extras,categories}) => {
         <Layout>
         <div className='meals'>
             {
-                showPopup && <MealsPopup setImg={setImg} onUpdate={onUpdate} checkedItems={checkedItems} setCheckedItems={setCheckedItems} update={update} detail={detail} setDetail={setDetail} categories={categories} price={price} setPrice={setPrice} name={name} setName={setName} category={category} setCategory={setCategory} image={image} setImage={setImage} kitchen={kitchen} setKitchen={setKitchen} extra={extra} setExtra={setExtra}  extras={extras} close={close} onSubmit={onSubmit} />
+                showPopup && <MealsPopup kitchens={kitchens} setImg={setImg} onUpdate={onUpdate} checkedItems={checkedItems} setCheckedItems={setCheckedItems} update={update} detail={detail} setDetail={setDetail} categories={categories} price={price} setPrice={setPrice} name={name} setName={setName} category={category} setCategory={setCategory} image={image} setImage={setImage} kitchen={kitchenId} setKitchen={onSetKitchen} extra={extra} setExtra={setExtra}  extras={extras} close={close} onSubmit={onSubmit} />
             }
             <div className="meals__top">
                 <div className="meals__topLeft">
@@ -164,7 +183,8 @@ const Meals = ({meals,extras,categories}) => {
 }
 const mapStateToProps = state=>({
     meals:state.meals,
-    extras:state.extras,
-    categories:state.categories
+    extr:state.extras,
+    categories:state.categories,
+    kitchens:state.kitchens
 })
 export default connect(mapStateToProps)(Meals);

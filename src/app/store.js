@@ -7,6 +7,7 @@ const initialState={
   property:null,
   extras:[],
   orders:[],
+  kitchens:[],
   sales:0,
   deli:0,
   vat:0,
@@ -89,6 +90,11 @@ const reducer = (prevState =initialState, action)=>{
         return{
             ...prevState,
             dispatchers:action.payload.dispatchers
+        }
+    case 'GET_KITCHENS':
+        return{
+            ...prevState,
+            kitchens:action.payload.kitchens
         }
       case 'GET_USERS':
           return{

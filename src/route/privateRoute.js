@@ -7,7 +7,8 @@ const PrivateRoute = ({component: Component,history, ...rest}) => {
 
         // Show the component only when the user is logged in
         // Otherwise, redirect the user to /signin page
-        <Route {...rest} render={props => (
+        <Route {...rest} render={props =>{
+            return (
 
 
                 // state.user && state.user.emailVerified?
@@ -19,7 +20,7 @@ const PrivateRoute = ({component: Component,history, ...rest}) => {
             // :
             //  <Redirect to={{ pathname: "/login", state: { referer: props.location } }} />
             
-        )} />
+        )}} />
     );
 };
 const mapStateToProps =state=>({

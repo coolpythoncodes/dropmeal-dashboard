@@ -29,7 +29,7 @@ const firebaseConfig = {
             ORDERS:'orders',
             NOTIFICATIONS:'notifications',
             DISPATCHERS:'dispatchers',
-            BOOKED:'bookedDates'
+            KITCHENS:'kitchens'
         }
         this.serverTime = firebase.firestore.Timestamp.now().seconds
     }
@@ -59,11 +59,12 @@ const firebaseConfig = {
           })
       })
     }
-    addExtra= async(name, price)=>{
+    addExtra= async(name, price, kitchen)=>{
 
         await  this.firestore.collection(this.tables.EXTRAS).add({
               name,
               amount:Number(price),
+              kitchen,
               deleted:0,
               createdAt:this.serverTime
           })
@@ -84,10 +85,11 @@ const firebaseConfig = {
         }
 
 
-        updateExtra= async(id, name, price)=>{
+        updateExtra= async(id, name, price, kitchen)=>{
 
         await  this.firestore.collection(this.tables.EXTRAS).doc(id).update({
                 name,
+                kitchen,
                 amount:Number(price)
             })
         }
@@ -123,7 +125,7 @@ const firebaseConfig = {
     getMeals = ()=>{
         return  this.firestore.collection(this.tables.MEALS).orderBy('createdAt', 'desc');
     }
-    addMeals= async(name,category, price, extras, image, kitchen,details,catname)=>{
+    addMeals= async(name,category, price, extras, image, kitchen,details,catname, kitchenId)=>{
         let searchIndex = [];
         const allString = name+' '+kitchen+' '+catname
         const string = allString.toLowerCase().split(' ');
@@ -141,6 +143,7 @@ const firebaseConfig = {
               category:catname,
               extras,
               photoURL:null,
+              kitchenId,
               keywords:searchIndex,
               kitchen,
               details,
@@ -162,7 +165,7 @@ const firebaseConfig = {
          })
          
      }
-    updateMeals= async(id,img,name,category, price, extras, image, kitchen,details, catname)=>{
+    updateMeals= async(id,img,name,category, price, extras, image, kitchen,details, catname,kitchenId)=>{
         let searchIndex = [];
         const allString = name+' '+kitchen+' '+catname
         const string = allString.toLowerCase().split(' ');
@@ -178,6 +181,7 @@ const firebaseConfig = {
               amount:Number(price),
               categoryId:category,
               extras,
+              kitchenId,
               category:catname,
               keywords:searchIndex,
               kitchen,
@@ -203,6 +207,9 @@ const firebaseConfig = {
             pickup
         })
     }
+    getKitchens = ()=>{
+        return this.firestore.collection(this.tables.KITCHENS).orderBy('name','desc');
+  }
     
 }
 export default new Firebase();

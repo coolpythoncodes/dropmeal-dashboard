@@ -8,7 +8,7 @@ import ExtrasPopup from './Popups/ExtrasPopup';
 import firebase from "./firebase"
 import { connect } from 'react-redux';
 
-const Extras = ({extras}) => {
+const Extras = ({extras,kitchens}) => {
 
     const [showPopup, setShowPopup] = useState(false);
     const [update, setUpdate] = useState(false)
@@ -18,6 +18,7 @@ const Extras = ({extras}) => {
 
 
     const [name, setName] = useState('')
+    const [kitchen, setKitchen] = useState('')
     const [id, setId] = useState('')
     const [price, setPrice] = useState('')
     const close = () => {
@@ -26,40 +27,44 @@ const Extras = ({extras}) => {
         setName('')
         setPrice('')
         setId('')
+        setKitchen('')
     }
     const onSubmit = (e)=>{
         e.preventDefault()
-        if(name==='' || price === ''){
+        if(name==='' || price === '' || kitchen===' '){
             return false
         }
-        firebase.addExtra(name,price)
+        firebase.addExtra(name,price, kitchen)
         .then(()=>{
             close()
             setUpdate(false)
             setName('')
             setPrice('')
             setId('')
+            setKitchen('')
         })
     }
     const onUpdate = (e)=>{
         e.preventDefault()
-        if(name==='' || price === ''){
+        if(name==='' || price === '' || kitchen === ''){
             return false
         }
-        firebase.updateExtra(id,name,price)
+        firebase.updateExtra(id,name,price, kitchen)
         .then(()=>{
             close()
             setUpdate(false)
             setName('')
             setPrice('')
             setId('')
+            setKitchen('')
         })
     }
     const onEdit = (data)=>{
         handleClick()
         setName(data.name)
-        setPrice(data.price)
+        setPrice(data.amount)
         setId(data.id)
+        setKitchen(data.kitchen)
         setUpdate(true)
     }
     const onDelete =(id)=>{
@@ -69,7 +74,7 @@ const Extras = ({extras}) => {
     <Layout>
         <div className='extras'>
             {
-                showPopup && <ExtrasPopup onUpdate={onUpdate} update={update} onSubmit={onSubmit} setName={setName} name={name} price={price} setPrice={setPrice} close={close}/>
+                showPopup && <ExtrasPopup setKitchen={setKitchen} kitchen={kitchen} kitchens={kitchens} onUpdate={onUpdate} update={update} onSubmit={onSubmit} setName={setName} name={name} price={price} setPrice={setPrice} close={close}/>
             }
             <div className="extras__top">
                 <div className="extras__topLeft">
@@ -125,6 +130,7 @@ const Extras = ({extras}) => {
     );
 }
 const mapStateToProps =state=>({
-    extras:state.extras
+    extras:state.extras,
+    kitchens:state.kitchens
 })
 export default connect(mapStateToProps)(Extras);
