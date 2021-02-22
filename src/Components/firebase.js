@@ -146,6 +146,7 @@ const firebaseConfig = {
               kitchenId,
               keywords:searchIndex,
               kitchen,
+              quickMenu:0,
               details,
               deleted:0,
               createdAt:this.serverTime
