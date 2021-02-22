@@ -7,13 +7,19 @@ import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import firebase from "../Components/firebase"
 
+
+
+
 const Login = () => {
 
     const [passwordShow, setPasswordShow] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
     const [email, setEmail]= useState('')
     const [password, setPassword] = useState('')
     const changePasswordVisibility = () => {
         setPasswordShow(!passwordShow)
+    
     }
 
     const getCurrentYear = () => {
@@ -22,20 +28,45 @@ const Login = () => {
 
     const onSubmit = (e)=>{
         e.preventDefault();
+        setLoading(true);
+        setError('')
+
         firebase.login(email, password)
         .then(()=>{
-
+            setLoading(false);
         })
         .catch(e=>{
+            if(e.code==="auth/user-not-found")
+            setError('User not found');
 
+            else if(e.code==="auth/too-many-requests")
+            setError('Too many attempt. Account temporarily disabled');
+
+            else if(e.code==="auth/invalid-email")
+            setError('Email or Password not correct.');
+
+            else if(e.code==="auth/network-request-failed")
+            setError('Network Error');
+            setLoading(false);
+        
         })
     }
+
 
     return (
         <section id='login'>
             <div className='login'>
                 <img className='login__logo' src={Logo} alt="" />
-                <form onSubmit={onSubmit}>
+                <form className="form" onSubmit={onSubmit}>
+                   {
+                       error !== '' ?
+                       <p className="ErrorMessage"> {error}</p>
+                       :
+                       null
+                   }
+                
+
+
                     <div className="login__email">
                         <PermIdentityIcon style={{ color: '#BCBCBC' }} />
                         <input
@@ -58,7 +89,12 @@ const Login = () => {
                             }
                         </span>
                     </div>
-                    <button type='submit'>Login</button>
+                    {
+                        loading?
+                        <button type='button' className="loading" >Connecting...</button>
+                        :
+                        <button type='submit'>Login</button>
+                    }
                 </form>
             </div>
             <footer>
